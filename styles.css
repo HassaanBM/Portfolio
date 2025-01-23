@@ -1,0 +1,381 @@
+/* Table of Contents
+  01. General Variables
+  02. Body Styling
+  03. Header
+  04. Home Page Content
+  05. First Fold
+
+
+  Meta:
+  Use the table of contents to navigate the styles.css file.
+  Use the search functionality to find specific styles.
+  Use the comments to understand the purpose of each section.
+  Use the code to customize the styles to your liking.
+  Use lowercase and hyphens for class names.
+
+*/
+
+
+
+
+
+/* Fonts Import */
+@import url('https://fonts.cdnfonts.com/css/made-mirage');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,700,0,0&icon_names=close');
+
+
+/* General Variables */
+:root {
+  /* Background Variables */
+  color-scheme:               dark light;
+  --background-light:       hsl(0, 0%, 97%);
+  --background-dark:        hsl(0, 0%, 7%);
+  --background-grid-opacity:  5%;
+  --background-grid-color:    color-mix(in oklab, var(--background-light) var(--background-grid-opacity), var(--background-dark) var(--background-grid-opacity));
+  --background-grid-size:     3em;
+  --background-grid-width:    0.05em;
+  --background-grain-speed:   17s;
+  --custom-cursor:            url('cursor.png') 3 3, auto;
+  --custom-cursor-pointer:    url('cursor-pointer.png') 3 3, auto;
+  --container-width-desktop:  clamp(1080px, 90vw, 1400px);
+
+  --text-light:           hsl(000, 000%, 000%);
+  --text-dark:            hsl(000, 000%, 100%);
+  --accent-light:         hsl(56, 54%, 40%);
+  --accent-dark:          hsl(56, 54%, 75%);
+  --card-bg-light:        hsl(000, 000%, 098%);
+  --card-bg-dark:         hsl(000, 000%, 012%);
+  --clr-primary:          hsl(28, 95%, 57%);
+  --border-radius:          1rem;
+
+  /* Font Variables */
+  --font-family-primary:    'MADE Mirage', sans-serif;
+  --font-family-secondary:  'Work Sans', sans-serif;
+  --font-family-tertiary:   'Work Sans', sans-serif;
+  --font-size-h1:           clamp(2.25rem, 2.4vw + 1.0rem, 3.50rem);   /* 16 * 2.25 = 36px, 16 * 3.50 = 56px */
+  --font-size-h2:           clamp(2.00rem, 2.0vw + 0.8rem, 2.50rem);   /* 16 * 2.00 = 32px, 16 * 2.50 = 40px */
+  --font-size-h3:           clamp(1.80rem, 1.8vw + 0.6rem, 2.00rem);   /* 16 * 1.80 = 28px, 16 * 2.00 = 32px */
+  --font-size-p:            clamp(0.90rem, 1.8vw + 0.4rem, 1.10rem);   /* 16 * 0.90 = 14px, 16 * 1.10 = 18px */
+  --font-size-small:        clamp(0.80rem, 1.8vw + 0.2rem, 1.00rem);   /* 16 * 0.80 = 12px, 16 * 1.00 = 16px */
+  --font-size-large:        clamp(1.00rem, 1.8vw + 0.5rem, 1.25rem);   /* 16 * 1.00 = 16px, 16 * 1.25 = 20px */
+}
+
+* {
+  box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-primary);
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+h1.large {font-size: var(--font-size-large);}
+h1 {font-size: var(--font-size-h1);}
+h2 {font-size: var(--font-size-h2);}
+h3 {font-size: var(--font-size-h3);}
+h4 {font-size: var(--font-size-h4);}
+h5 {font-size: var(--font-size-h5);}
+h6 {font-size: var(--font-size-h6);}
+p {
+  font-size: var(--font-size-p);
+  margin: 0;
+  padding: 0;
+}
+.d-flex{display:      flex;}
+.d-block{display:     block;}
+.d-grid{display:      grid;}
+.d-none{display:      none !important;}
+.font-large{font-size:        var(--font-size-large);}
+.font-small {font-size:       var(--font-size-small);}
+.font-primary{font-family:    var(--font-family-primary);}
+.font-secondary{font-family:  var(--font-family-secondary);}
+
+
+
+
+
+
+#loader-wrapper{
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  z-index: 2;
+  video.loader-video{
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .loader {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: hsl(0deg 0% 0% / 50%);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 15vh 15vw;
+      outline: 1rem solid black;
+      backdrop-filter: blur(40px);
+  }
+}
+
+.c-loader{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  pointer-events: none;
+  background-color: black;
+  flex-direction: column;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  overflow: hidden;
+  opacity:0;
+}
+.c-loader__mask {
+  z-index:200;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  overflow: hidden;
+}
+.c-loader__inner {
+  width: 100%;
+  height: 100vh;  
+  background-color: red;
+  position: relative;
+}
+
+
+[data-scroll-container] {
+  height: 100%; /* Ensure the container takes the full height */
+  overflow-x: hidden; /* Prevent overflow outside the container */
+}
+
+
+/* Body Styling */
+body {
+  cursor: var(--custom-cursor);
+  scroll-behavior: smooth;
+  background-color: var(--background-light);
+  color:            var(--text-light);
+  font-family:      var(--font-family-secondary);
+  margin:     0;
+  padding:    0;
+  transition:           background-color 0.3s, color 0.3s;
+  background-size:      var(--background-grid-size) var(--background-grid-size);
+  background-position:  center top;
+  background-image: 
+    linear-gradient(00deg, var(--background-grid-color) var(--background-grid-width), transparent var(--background-grid-width)),
+    linear-gradient(90deg, var(--background-grid-color) var(--background-grid-width), transparent var(--background-grid-width));
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+  }
+  @media (prefers-color-scheme: light) {
+    /* &::after {
+      filter:         invert(1);
+      animation:      noise var(--background-grain-speed) steps(10) infinite;
+      pointer-events: none;
+      background:     url(https://grainy-gradients.vercel.app/noise.svg) repeat;
+      content:        '';
+      height:         500%;
+      left:           -100%;
+      position:       fixed;
+      top:            -100%;
+      width:          500%;
+      z-index:        -1;
+    } */
+  }
+  a,btn,input{
+    cursor:   var(--custom-cursor-pointer) !important;
+    color:    currentColor
+  }
+}
+
+
+
+
+
+/* Header */
+header{
+  position:         fixed;
+  z-index:          1;
+  left:             0;
+  right:            0;
+  top:              0;
+  background:     hsl(0deg 0% 10% / 50%);
+  backdrop-filter:  blur(10px);
+  border-bottom:    1px solid var(--background-grid-color);
+  .header-wrapper{
+    display:          flex;
+    justify-content:  space-between;
+    align-items:      center;
+    padding-inline:   max(2vw, 40px);
+    padding-block:    16px;
+
+  }
+  .logo-area {
+    display:          flex;
+    align-items:      center;
+    justify-content:  space-between;
+    gap:              16px;
+    .profile-image {
+      width:          60px;
+      border-radius:  50%;
+      aspect-ratio:   1 / 1;
+      @media screen and (max-width: 768px) {
+        width: 30px;
+      }
+    }
+  }
+  input#menu-trigger {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: grid;
+      position: relative;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      &:after {
+        content: " ";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 2px;
+        bottom: 0;
+        height: 2px;
+        width: 20px;
+        background: white;
+        margin: 0 0px 0px -20px;
+        box-shadow: 0px 8px, 0px -8px;
+        border-radius: 2px;
+        transition: all 0.2s ease;
+      }
+      + .navigation {
+        display: grid;
+        align-items: center;
+        align-content: center;
+        position: absolute;
+        top: -4px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        background: black;
+        transform: translateY(-100%);
+        transition: all 0.8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      }
+      &:checked {
+        &:after {
+          box-shadow: 0px 0px, 0px 0px;
+        }
+        + .navigation {
+          transform: translateY(0);
+          label{
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  .navigation {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    a {
+      font-size: 1.24rem;
+      text-decoration: none;
+      transition: color 0.3s;
+      color: dark-light( var(--text-dark), var(--text-light));
+      &:hover {
+        @media (prefers-color-scheme: dark) {
+          color: var(--accent-light)
+        }
+        @media (prefers-color-scheme: light) {
+          color: var(--accent-light)
+        }
+      }
+    }
+    label{
+      display: none;
+    }
+  }
+}
+
+
+
+/* Home Page Content */
+main.main-content {
+  section{
+    display:          grid;
+    place-items:      start;
+    place-content:    center;
+    min-height:       50vh;
+    justify-content:  start;
+    align-content:    center;
+    &.first-fold{
+      min-height: 100vh;
+    }
+  }
+  &.typography-page{
+    *{
+      outline:    1px solid hsla(0, 100%, 50%, 0.5);
+    }
+    section{
+      gap:          20px;
+      height:       auto;
+      padding-top:  40px;
+      
+    }
+    @media screen and (max-width: 768px) {
+      margin-block: 80px;
+      section{
+        align-items: start;
+        align-content: start;
+      }
+    }
+  }
+}
+.container{
+  max-width: var(--container-width-desktop);
+  margin: auto;
+  padding-inline: clamp(24px, 8vw, 40px);
+  @media screen and (max-width: 768px) {
+    padding-inline: 16px;
+  }
+}
+
+
+
+/* First Fold */
+.first-fold {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  @media (prefers-color-scheme: dark) {
+    mix-blend-mode: lighten;
+  }
+
+  spline-viewer {
+      height: calc(100vh + 80px);
+      @media (prefers-color-scheme: dark) {
+        filter: invert(1);
+      }
+  }
+}
