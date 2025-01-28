@@ -23,19 +23,10 @@
 </head>
 
 <body data-barba="wrapper">
-
-  <!-- <div id="loader-wrapper">
-    <video class="loader-video" src="showreel.mp4" autoplay muted loop></video>
-    <div class="loader">
-      <h1 class="loader__title">
-        Loading...
-      </h1>
-    </div>
-  </div> -->
-
   <div class="c-loader js-loader">
     <div class="c-loader__mask js-loader__mask">
       <div class="c-loader__inner js-loader__inner">
+        <!-- <video src="showreel.mp4" autoplay muted loop></video> -->
       </div> <!-- this will scale up -->
     </div>
   </div>
@@ -47,16 +38,15 @@
       <div class="container header-wrapper">
         <div class="logo-area">
           <a href="./" class="logo-wrapper" target="_top" title="Go to Home">
-            <img class="profile-image"
-              src="https://creatorspace.imgix.net/users/cm02e6xya0hncm201pkr64aok/9W8XK6E5LqrHdss6-pp.jpeg" alt="Logo">
+            <img class="profile-image" src="icon-dark.png" alt="Logo"> Hassaan Bin Masham
           </a>
         </div>
 
         <!-- Social Links -->
         <input type="checkbox" name="menu-trigger" id="menu-trigger" class="menu-trigger" />
-        <div class="navigation">
+        <nav class="navigation">
           <a class="nav-items" href="./">Home</a>
-          <a class="nav-items d-none" href="/interactions.html">Interactions</a>
+          <a class="nav-items" href="/about.html">About Me</a>
           <a class="nav-items" href="https://be.net/hassaan_bm" target="_blank">Behance</a>
           <a class="nav-items" href="https://hassaanbinmasham.com" target="_blank">Bento</a>
           <label for="menu-trigger">
@@ -64,48 +54,52 @@
               close
             </span>
           </label>
-        </div>
+        </nav>
       </div>
     </header>
     <!-- Header End -->
 
     <div class="scroll-container" data-scroll-container>
-      <main id="main" class="home-page container main-content">
-        <section class="first-fold">
-          <p class="font-large">Hello</p>
-          <h1 class="font-secondary">
-            I’m Hassaan Bin Masham,
-          </h1>
-          <h2 class="font-secondary">
-            a UI/UX/Product Designer in Karachi, Pakistan,
-            <br>crafting digital experiences.
-          </h2>
-          <p class="font-large">
-            Let's connect: 
-            <a
-              href="mailto:hassaanbinmasham@gmail.com?subject=Hello Hassaan&body=Hi, 
-              I found you through your website and just wanted to say hi!">hassaanbinmasham@gmail.com
-            </a>
-          </p>
+      <main id="main" class="home-page main-content">
+
+        <section class="intro">
+          <div class="container">
+            <div class="intro-text col">
+              <p class="font-small freelance-label"><span class="status-light"></span>Available for freelance</p>
+              <h1>I’m Hassaan Bin Masham,</h1>
+              <h2>Designer in Karachi, Pakistan,<br>crafting digital experiences.</h2>
+              <p class="font-large">
+                Let's connect:
+                <a href="mailto:hassaanbinmasham@gmail.com?subject=Hello Hassaan&body=Hi, 
+                  I found you through your website and just wanted to say hi!">hassaanbinmasham@gmail.com
+                </a>
+              </p>
+            </div>
+          </div>
         </section>
-        <section class="d-none">
-          <h1>Second Heading</h1>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quidem, modi rem sed quae praesentium
-            reiciendis pariatur quos. Laudantium distinctio ducimus eligendi nesciunt eum obcaecati in omnis doloremque
-            eveniet voluptatum!</p>
+
+        <section class="work">
+          <div class="container ">
+            <h1>My Work</h1>
+            <p>This is a selection of my work. For more, visit my <a href="https://be.net/hassaan_bm"
+                target="_blank">Behance</a> profile.</p>
+            <ul class="projects">
+              <li>
+                <h3 class="project-title">project heading</h3>
+                <p class="project-description">project description</p>
+              </li>
+              <li>
+                <h3 class="project-title">project heading</h3>
+                <p class="project-description">project description</p>
+              </li>
+              <li>
+                <h3 class="project-title">project heading</h3>
+                <p class="project-description">project description</p>
+              </li>
+            </ul>
+          </div>
         </section>
-        <section class="d-none">
-          <h1>Third Heading</h1>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quidem, modi rem sed quae praesentium
-            reiciendis pariatur quos. Laudantium distinctio ducimus eligendi nesciunt eum obcaecati in omnis doloremque
-            eveniet voluptatum!</p>
-        </section>
-        <section class="d-none">
-          <h1>Fourth Heading</h1>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quidem, modi rem sed quae praesentium
-            reiciendis pariatur quos. Laudantium distinctio ducimus eligendi nesciunt eum obcaecati in omnis doloremque
-            eveniet voluptatum!</p>
-        </section>
+
       </main>
     </div>
   </div>

@@ -1,19 +1,11 @@
-gsap.registerPlugin(ScrollTrigger);
-
-// ScrollTrigger.defaults({
-//   markers: true;
-// })
-
 let scroll;
-
-const body = document.body;
 const select = (e) => document.querySelector(e);
 const selectAll = (e) => document.querySelectorAll(e);
-//const container = select('.main-content');
-const loader = select('.js-loader');
+const loader =      select('.js-loader');
 const loaderInner = select('.js-loader__inner');
+const loaderMask  = select('.js-loader__mask');
 const progressBar = select('.js-loader__progress');
-const loaderMask = select('.js-loader__mask');
+const container   = select('.main-content');
 
 // show loader on page load
 gsap.set(loader, { autoAlpha: 1 });
@@ -33,10 +25,10 @@ function pageTransitionIn({ container }) {
     }
   });
   tl
-    .set(loaderInner, { autoAlpha: 0 })
-    .fromTo(loader, { yPercent: -100 }, { yPercent: 0 })
-    .fromTo(loaderMask, { yPercent: 80 }, { yPercent: 0 }, 0)
-    .to(container, { y: 150 }, 0);
+    .set(loaderInner,   { autoAlpha: 0    })
+    .fromTo(loader,     { yPercent: -100  }, { yPercent: 0 })
+    .fromTo(loaderMask, { yPercent: 80    }, { yPercent: 0 }, 0)
+    .to(container,      { y: 100          }, 0);
   return tl;
 }
 
@@ -50,11 +42,12 @@ function pageTransitionOut({ container }) {
     onComplete: () => initScript()
   });
   tl
-    .to(loader, { yPercent: 100 })
-    .to(loaderMask, { yPercent: -80 }, 0)
-    .from(container, { y: -150 }, 0);
+    .to(loader,       { yPercent: 100 })
+    .to(loaderMask,   { yPercent: -80 }, 0)
+    .from(container,  { y: -150       }, 0);
   return tl;
 }
+
 
 function initPageTransitions() {
 
@@ -118,12 +111,15 @@ function initPageTransitions() {
     scroll.on("scroll", ScrollTrigger.update);
 
     ScrollTrigger.scrollerProxy('[data-scroll-container]', {
+
       scrollTop(value) {
         return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
       }, // we don't have to define a scrollLeft because we're only scrolling vertically.
+
       getBoundingClientRect() {
         return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
       },
+
       // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
       pinType: container.querySelector('[data-scroll-container]').style.transform ? "transform" : "fixed"
     });
@@ -160,9 +156,9 @@ function initLoader() {
   tlLoaderIn
     //.set(loaderContent, {autoAlpha: 1})
     .to(loaderInner, {
-      scaleY: 1,
-      transformOrigin: 'bottom',
-      ease: 'power1.inOut'
+      scaleY:           1,
+      transformOrigin:  'bottom',
+      ease:             'power1.inOut'
     });
 
   const tlLoaderOut = gsap.timeline({
@@ -175,8 +171,12 @@ function initLoader() {
   });
 
   tlLoaderOut
-    .to(loader, { yPercent: -100 }, 0.2)
-    .from('.main-content', { y: 150 }, 0.2);
+    .to(loader,                       { yPercent: -100     }, 0.2)
+    .from('.main-content',            { y: 150             }, 0.2)
+    .from('.header',                  { opacity: 0, y: -100}, 4.2)
+    .from('.intro-text h2',           { opacity: 0, y:50   }, 2.3)
+    .from('.intro-text p:last-child', { opacity: 0, y:50   }, 2.5)
+    .from('.freelance-label',         { opacity: 0         }, 3.5);
 
   const tlLoader = gsap.timeline();
   tlLoader

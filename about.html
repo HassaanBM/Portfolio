@@ -23,42 +23,32 @@
 </head>
 
 <body data-barba="wrapper">
-
-  <!-- <div id="loader-wrapper">
-    <video class="loader-video" src="showreel.mp4" autoplay muted loop></video>
-    <div class="loader">
-      <h1 class="loader__title">
-        Loading...
-      </h1>
-    </div>
-  </div> -->
-
   <div class="c-loader js-loader">
     <div class="c-loader__mask js-loader__mask">
       <div class="c-loader__inner js-loader__inner">
+        <!-- <video src="showreel.mp4" autoplay muted loop></video> -->
       </div> <!-- this will scale up -->
     </div>
   </div>
 
 
-  <div class="main-content" data-barba="container" data-barba-namespace="Interactions">
+  <div class="main-content" data-barba="container" data-barba-namespace="About Me">
     <!-- Header Start -->
     <header class="header">
       <div class="container header-wrapper">
         <div class="logo-area">
           <a href="./" class="logo-wrapper" target="_top" title="Go to Home">
-            <img class="profile-image"
-              src="https://creatorspace.imgix.net/users/cm02e6xya0hncm201pkr64aok/9W8XK6E5LqrHdss6-pp.jpeg" alt="Logo">
+            <img class="profile-image" src="icon-dark.png" alt="Logo"> Hassaan Bin Masham
           </a>
         </div>
 
         <!-- Social Links -->
         <input type="checkbox" name="menu-trigger" id="menu-trigger" class="menu-trigger" />
         <div class="navigation">
-          <a href="./">Home</a>
-          <a href="/interactions.html">Interactions</a>
-          <a href="https://be.net/hassaan_bm" target="_blank">Behance</a>
-          <a href="https://hassaanbinmasham.com" target="_blank">Bento</a>
+          <a class="nav-items" href="./">Home</a>
+          <a class="nav-items" href="/about.html">About Me</a>
+          <a class="nav-items" href="https://be.net/hassaan_bm" target="_blank">Behance</a>
+          <a class="nav-items" href="https://hassaanbinmasham.com" target="_blank">Bento</a>
           <label for="menu-trigger">
             <span class="material-symbols-rounded">
               close
@@ -70,12 +60,25 @@
     <!-- Header End -->
 
     <div class="scroll-container" data-scroll-container>
-      <main id="main" class="interactions-page container main-content">
-        <section>
-          <h1>Interactions</h1>
-          <p class="font-large">I’m Hassaan Bin Masham, a UX/UI Designer<br />in Karachi, Pakistan, passionate
-            about<br />intuitive and delightful experiences.</p>
+      <main id="main" class="home-page main-content">
+
+        <section class="intro">
+          <div class="container">
+            <div class="intro-text col">
+              <h1>About Me</h1>
+              <h2>I am Hassaan Bin Masham,<br>A Product, UX, UI and, Front-End Designer based in Karachi, Pakistan</h2>
+            </div>
+          </div>
         </section>
+
+        <section class="work">
+          <div class="container ">
+            <h1>My Work</h1>
+            <p>This is a selection of my work. For more, visit my <a href="https://be.net/hassaan_bm"
+                target="_blank">Behance</a> profile.</p>
+          </div>
+        </section>
+
       </main>
     </div>
   </div>
