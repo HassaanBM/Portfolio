@@ -45,8 +45,8 @@
         <!-- Social Links -->
         <input type="checkbox" name="menu-trigger" id="menu-trigger" class="menu-trigger" />
         <nav class="navigation">
-          <a class="nav-items" href="./">Home</a>
-          <a class="nav-items" href="/about.html">About Me</a>
+          <a class="nav-items d-none" href="./">Home</a>
+          <a class="nav-items d-none" href="about.html">About Me</a>
           <a class="nav-items" href="https://be.net/hassaan_bm" target="_blank">Behance</a>
           <a class="nav-items" href="https://hassaanbinmasham.com" target="_blank">Bento</a>
           <label for="menu-trigger">
@@ -62,12 +62,12 @@
     <div class="scroll-container" data-scroll-container>
       <main id="main" class="home-page main-content">
 
-        <section class="intro">
+        <section class="intro" data-scroll data-scroll-speel="-2">
           <div class="container">
             <div class="intro-text col">
               <p class="font-small freelance-label"><span class="status-light"></span>Available for freelance</p>
-              <h1>I’m Hassaan Bin Masham,</h1>
-              <h2>Designer in Karachi, Pakistan,<br>crafting digital experiences.</h2>
+              <h1>Hello <span class="first-name">, I'm Hassaan</span> <span class="middle-name">Bin</span> <span class="last-name">Masham</span></h1>
+              <h2>Designer in Karachi, Pakistan,</h2>
               <p class="font-large">
                 Let's connect:
                 <a href="mailto:hassaanbinmasham@gmail.com?subject=Hello Hassaan&body=Hi, 
@@ -84,17 +84,25 @@
             <p>This is a selection of my work. For more, visit my <a href="https://be.net/hassaan_bm"
                 target="_blank">Behance</a> profile.</p>
             <ul class="projects">
-              <li>
-                <h3 class="project-title">project heading</h3>
-                <p class="project-description">project description</p>
+              <li class="project-1">
+                <a class="project" href="#">
+                  <img src="naqlista.jpg" alt="naqlista" class="project-image">
+                  <div class="project-content">
+                    <div class="project-tag">Mobile App, UI / UX</div>
+                    <h3 class="project-title">Naqlista</h3>
+                    <p class="project-description">A concept of a mobile app that helps people move their goods, this was hoped to reduce the overall hastle of finding a truck or a moving service.</p>
+                </div>
+                </a>
               </li>
-              <li>
-                <h3 class="project-title">project heading</h3>
-                <p class="project-description">project description</p>
-              </li>
-              <li>
-                <h3 class="project-title">project heading</h3>
-                <p class="project-description">project description</p>
+              <li class="project-2 project">
+                <a class="project" href="#">
+                  <img src="naqlista.jpg" alt="naqlista" class="project-image">
+                  <div class="project-content">
+                    <div class="project-tag">Mobile App, UI / UX</div>
+                    <h3 class="project-title">Naqlista</h3>
+                    <p class="project-description">A concept of a mobile app that helps people move their goods, this was hoped to reduce the overall hastle of finding a truck or a moving service.</p>
+                </div>
+                </a>
               </li>
             </ul>
           </div>
