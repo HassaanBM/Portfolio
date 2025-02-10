@@ -28,11 +28,11 @@
 :root {
   /* Background Variables */
   color-scheme:               dark light;
-  --background-light:       hsl(0, 0%, 90%);
+  --background-light:       hsl(0, 0%, 98%);
   --background-dark:        hsl(0, 0%, 10%);
-  --background-grid-opacity:  5%;
+  --background-grid-opacity:  10%;
   --background-grid-color:    color-mix(in oklab, var(--background-light) var(--background-grid-opacity), var(--background-dark) var(--background-grid-opacity));
-  --background-grid-size:     4rem;
+  --background-grid-size:     15.2rem;
   --background-grid-width:    0.05em;
   --background-grid-image:    linear-gradient(90deg, var(--background-grid-color) var(--background-grid-width), transparent var(--background-grid-width)),
                               linear-gradient(0deg, var(--background-grid-color) var(--background-grid-width), transparent var(--background-grid-width));
@@ -43,23 +43,23 @@
 
   --text-light:           hsl(000, 000%, 000%);
   --text-dark:            hsl(000, 000%, 100%);
-  --accent-light:         hsl(56, 54%, 40%);
-  --accent-dark:          hsl(56, 54%, 75%);
-  --card-bg-light:        hsl(000, 000%, 098%);
+  --accent-light:         hsl(040, 100%, 060%);
+  --accent-dark:          hsl(056, 054%, 075%);
+  --card-bg-light:        hsl(000, 000%, 100%);
   --card-bg-dark:         hsl(000, 000%, 012%);
-  --clr-primary:          hsl(28, 95%, 57%);
+  --clr-primary:          hsl(028, 095%, 057%);
   --border-radius:          1rem;
 
   /* Font Variables */
   --font-family-primary:    'Work Sans', sans-serif;
   --font-family-secondary:  'Work Sans', sans-serif;
   --font-family-tertiary:   'Work Sans', sans-serif;
-  --font-size-h1:           clamp(2.25rem, 2.2vw + 1.6rem, 3.25rem)    /* 16 * 2.25 = 36px, 16 * 5.00 = 80px */;
-  --font-size-h2:           clamp(2.00rem, 2.0vw + 0.8rem, 2.50rem);   /* 16 * 2.00 = 32px, 16 * 2.50 = 40px */
-  --font-size-h3:           clamp(1.80rem, 1.8vw + 0.6rem, 2.00rem);   /* 16 * 1.80 = 28px, 16 * 2.00 = 32px */
-  --font-size-p:            clamp(0.90rem, 1.8vw + 0.4rem, 1.10rem);   /* 16 * 0.90 = 14px, 16 * 1.10 = 18px */
-  --font-size-small:        clamp(0.80rem, 1.8vw + 0.2rem, 1.00rem);   /* 16 * 0.80 = 12px, 16 * 1.00 = 16px */
-  --font-size-large:        clamp(1.00rem, 1.8vw + 0.5rem, 1.25rem);   /* 16 * 1.00 = 16px, 16 * 1.25 = 20px */
+  --font-size-h1:           3.50rem;
+  --font-size-h2:           3.00rem;
+  --font-size-h3:           2.50rem;
+  --font-size-p:            1.00rem;
+  --font-size-small:        0.85rem;
+  --font-size-large:        1.25rem;
   --font-size-navigation:   1.04rem;
 }
 * {
@@ -125,7 +125,8 @@ p  {font-size: var(--font-size-p);margin: 0;padding: 0.5rem 0;}
     .c-loader__inner {
       width:            100%;
       height:           100vh;  
-      background-color: hsl(0, 100%, 50%);
+      @media (prefers-color-scheme: dark) {background:     var(--card-bg-dark);}
+      @media (prefers-color-scheme: light) {background:    var(--card-bg-light);}
       position:         relative;
       video {
         object-fit: cover;
@@ -153,10 +154,8 @@ body {
   padding:              0;
   transition:           background-color 0.3s, color 0.3s;
   background-size:      var(--background-grid-size) var(--background-grid-size);
+  background-image:     var(--background-grid-image);
   background-position:  center top;
-  background-image: 
-    linear-gradient(00deg, var(--background-grid-color) var(--background-grid-width), transparent var(--background-grid-width)),
-    linear-gradient(90deg, var(--background-grid-color) var(--background-grid-width), transparent var(--background-grid-width));
   @media (prefers-color-scheme: dark) {
     background-color: var(--background-dark);
     color: var(--text-dark);
@@ -194,9 +193,9 @@ header{
   left:             0;
   right:            0;
   top:              0;
-  background:     hsl(0deg 0% 10% / 50%);
+  background:       hsl(from var(--card-bg-dark) H S L / 50%);
   @media (prefers-color-scheme: light) {
-    background:     hsl(0deg 0% 100% / 50%);
+    background:       hsl(from var(--card-bg-light) H S L / 50%);
   }
   backdrop-filter:  blur(10px);
   border-bottom:    1px solid var(--background-grid-color);
@@ -204,8 +203,8 @@ header{
     display:          flex;
     justify-content:  space-between;
     align-items:      center;
-    padding-inline:   max(2vw, 40px);
-    padding-block:    1.7rem;
+    padding-inline:   2.0rem;
+    padding-block:    1.5rem;
     .logo-area {
       display:          flex;
       align-items:      center;
@@ -217,16 +216,13 @@ header{
         gap:                1rem;
         text-decoration:    none;
         font-size:          var(--font-size-navigation);
-        img {
-          width:          40px;
-          aspect-ratio:   1 / 1;
-        }
       }
     }
 
   }
   input#menu-trigger {
     display: none;
+
     @media screen and (max-width: 768px) {
       display: grid;
       position: relative;
@@ -253,15 +249,16 @@ header{
         align-items: center;
         align-content: center;
         position: absolute;
-        top: -4px;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         width: 100vw;
         height: 100vh;
         background: black;
         transform: translateY(-100%);
         transition: all 0.8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        gap: 3rem;
+        a{
+          font-size: var(--font-size-h1);
+        }
       }
       &:checked {
         &:after {
@@ -275,11 +272,12 @@ header{
         }
       }
     }
+
   }
   .navigation {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 2rem;
     a {
       font-size:          var(--font-size-navigation);
       text-decoration:    none;
@@ -316,23 +314,22 @@ main.main-content {
       min-height:     100vh;
     }
     &.intro{
-      min-height: 70vh;
-      @media screen and (max-width: 768px) {
-        min-height: 80vh;
-      }
-      span.status-light {
+      min-height: 100vh;
+      span{
         display: inline-block;
-        aspect-ratio: 1 / 1;
-        width: 12px;
-        background: radial-gradient(hsl(120deg 100% 50%), hsl(120deg 100% 37%));
-        border-radius: 100%;
-        margin-right: 0.4rem;
-      }
-      h1{
-        overflow: hidden;
-        span{
-          display: inline-block;
+        &.status-light {
+          aspect-ratio: 1 / 1;
+          width: 12px;
+          background: radial-gradient(hsl(120deg 100% 50%), hsl(120deg 100% 37%));
+          border-radius: 100%;
+          margin-right: 0.4rem;
         }
+      }
+      h1,h2,h3{
+        overflow: hidden;
+      }
+      .intro-text{
+        overflow: hidden;
       }
     }
     /* Work Section */
@@ -354,30 +351,41 @@ main.main-content {
             text-decoration:  none;
             position:         relative;
             border-radius:    0.5rem;
-            background-color: hsl(from var(--background-grid-color) h s 50% / 5%);
             transition:       all 0.3s ease;
+            /* background-color: hsl(from var(--background-grid-color) h s 50% / 5%); */
+            @media (prefers-color-scheme: dark) {background:    hsl(from var(--background-dark) h s l / 100%);}
+            @media (prefers-color-scheme: light){background:    hsl(from var(--background-light) h s l / 100%);}
+
+            /* Hover Transitions */
             &:hover{
-              background-color: hsl(from var(--background-grid-color) h s 50% / 10%);
+              @media (prefers-color-scheme: dark) {background:    hsl(from var(--background-dark)  h s l / 75%);}
+              @media (prefers-color-scheme: light){background:    hsl(from var(--background-light) h s l / 75%);}
             }
             @media screen and (min-width: 768px) {
               display:          flex;
               justify-content:  space-between;
               gap:              1rem;
             }
-            img {
-              object-fit:     cover;
-              flex:           1;
-              aspect-ratio:   16 / 9;
-              display:        block;
-              width:          100%;
-              max-width:      400px;
+            .project-image-wrapper{
               border-radius:  0.5rem;
+              overflow:       hidden;
+              img {
+                object-fit:     cover;
+                flex:           1;
+                aspect-ratio:   16 / 9;
+                display:        block;
+                width:          100%;
+                max-width:      400px;
+                transform:      scale(1);
+                transition:     all 0.7s ease;
+              }
             }
             .project-tag{
               position:       absolute;
               top:            1rem;
               right:          1rem;
-              background:     var(--card-bg-dark);
+              @media (prefers-color-scheme: dark) {background:    hsl(from var(--card-bg-dark)  h s 25% / 25%);}
+              @media (prefers-color-scheme: light){background:    hsl(from var(--card-bg-light) h s 50% / 25%);}
               padding:        0.8rem 1rem;
               border-radius:  0.5rem;
               @media screen and (max-width: 768px){
@@ -392,6 +400,13 @@ main.main-content {
               .project-content {
                 position: relative;
                 display: grid;
+              }
+            }
+          }
+          &:hover{
+            .project-image-wrapper{
+              img{
+                transform: scale(1.2);
               }
             }
           }

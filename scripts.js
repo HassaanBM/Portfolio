@@ -109,7 +109,7 @@ function initSmoothScroll(container) {
     locoScroll = new LocomotiveScroll({
         el: container.querySelector('[data-scroll-container]'),
         smooth: true,
-        lerp: 0.07,
+        lerp: 0.1,
         getDirection: true
     });
 
@@ -137,7 +137,8 @@ function initAnimations() {
   if(select('ul.projects')){
     // Homepage interactions
     gsap.from('ul.projects > li', {
-      y: 100,
+      y: 50,
+      'filter':'blur(10px)',
       opacity: 0,
     //   ease: 'power2.inOut',
       stagger: 1,
@@ -145,30 +146,34 @@ function initAnimations() {
           trigger: 'ul.projects',
           scroller: '[data-scroll-container]',
           start: 'top 100%',
-          end: 'top 80%',
+          end: 'top 90%',
           markers: 0,
           scrub: true
       }
   });
-  const tlIntroduction = gsap.timeline({ defaults: { duration: 0.75, ease: 'power4.out' }, delay: 0.3 });
+  const tlIntroduction = gsap.timeline({ defaults: { duration: 0.85, ease: 'power4.out' }, delay: 1.75 });
   tlIntroduction
-      .from('.intro-text h1 .first-name', { opacity: 0, y: 50 }, 0.3)
-      .from('.intro-text h1 .middle-name', { opacity: 0, y: 50 }, 0.5)
-      .from('.intro-text h1 .last-name', { opacity: 0, y: 50 }, 0.7)
-      .from('.intro-text h2', { opacity: 0, y: 50 }, 2.0)
-      .from('.intro-text .font-large', { opacity: 0, y: 50 }, 2.5)
-      .from('.freelance-label', { opacity: 0 }, 3.5)
-      .from('.header', { opacity: 0, y: -100 }, 4.2);
+      .from('.intro-text h1 .first-name', {opacity: 0,y: 50}, 0.5)
+      .from('.intro-text h1 .middle-name',{opacity: 0,y: 50}, 0.75)
+      .from('.intro-text h1 .last-name',  {opacity: 0,y: 50}, 1)
+      .from('.intro-text h2 .position',   {opacity: 0,y: 50}, 2.0)
+      .from('.intro-text h2 .country',    {opacity: 0,y: 50}, 3)
+      .from('.intro-text .font-large',    {opacity: 0,y: 50}, 3.5)
+      .from('.header', { opacity: 0 }, 4.0)
+      .from('.freelance-label', { opacity: 0, y: 10 }, 5.0)
+      .from('.freelance-label', { x: -10 }, 5.5)
+      .from('.status-light', { scale: 0.01, y: 5 }, 5.75)
+      ;
   gsap.timeline().add(tlIntroduction);
   };
 
 
 
     // Loader Animations
-    const tlLoaderIn = gsap.timeline({ defaults: { duration: 1.1, ease: 'power2.out' } });
+    const tlLoaderIn = gsap.timeline({ defaults: { duration: 0.75, ease: 'power2.out' } });
     tlLoaderIn.to(loaderInner, { scaleY: 1, transformOrigin: 'bottom', ease: 'power1.inOut' });
 
-    const tlLoaderOut = gsap.timeline({ defaults: { duration: 1.75, ease: 'power4.inOut' }, delay: 0.2 });
+    const tlLoaderOut = gsap.timeline({ defaults: { duration: 0.75, ease: 'power4.inOut' }, delay: 0.2 });
     tlLoaderOut.to(loader, { yPercent: -100 }, 0.0).from('.main-content', { y: 150 }, 0.2);
 
     gsap.timeline().add(tlLoaderIn).add(tlLoaderOut);
