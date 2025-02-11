@@ -138,7 +138,7 @@ function initAnimations() {
     // Homepage interactions
     gsap.from('ul.projects > li', {
       y: 50,
-      'filter':'blur(10px)',
+    //   'filter':'blur(10px)',
       opacity: 0,
     //   ease: 'power2.inOut',
       stagger: 1,
@@ -146,8 +146,8 @@ function initAnimations() {
           trigger: 'ul.projects',
           scroller: '[data-scroll-container]',
           start: 'top 100%',
-          end: 'top 90%',
-          markers: 0,
+          end: 'top 65%',
+          markers: 1,
           scrub: true
       }
   });

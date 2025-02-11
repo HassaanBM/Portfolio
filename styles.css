@@ -39,7 +39,8 @@
   --background-grain-speed:   17s;
   --custom-cursor:            url('cursor.png') 3 3, auto;
   --custom-cursor-pointer:    url('cursor-pointer.png') 3 3, auto;
-  --container-width-desktop:  clamp(1080px, 77.6vw, 1400px);
+  --container-width-desktop:  1080px;
+  /* --container-width-desktop:  clamp(1080px, 77.6vw, 1400px); */
 
   --text-light:           hsl(000, 000%, 000%);
   --text-dark:            hsl(000, 000%, 100%);
@@ -54,9 +55,9 @@
   --font-family-primary:    'Work Sans', sans-serif;
   --font-family-secondary:  'Work Sans', sans-serif;
   --font-family-tertiary:   'Work Sans', sans-serif;
-  --font-size-h1:           3.50rem;
-  --font-size-h2:           3.00rem;
-  --font-size-h3:           2.50rem;
+  --font-size-h1:           3.00rem;
+  --font-size-h2:           2.50rem;
+  --font-size-h3:           2.25rem;
   --font-size-p:            1.00rem;
   --font-size-small:        0.85rem;
   --font-size-large:        1.25rem;
@@ -343,7 +344,7 @@ main.main-content {
         padding-inline:   0px;
         list-style:       none;
         li{
-          margin-bottom:  1rem;
+          margin-bottom:  2.5rem;
           .project { 
             display:          block;
             padding:          1rem;
@@ -363,6 +364,7 @@ main.main-content {
             }
             @media screen and (min-width: 768px) {
               display:          flex;
+              flex-flow:        column nowrap;
               justify-content:  space-between;
               gap:              1rem;
             }
@@ -374,8 +376,8 @@ main.main-content {
                 flex:           1;
                 aspect-ratio:   16 / 9;
                 display:        block;
-                width:          100%;
-                max-width:      400px;
+                width:          1080px;
+                max-width:      100%;
                 transform:      scale(1);
                 transition:     all 0.7s ease;
               }
@@ -396,10 +398,10 @@ main.main-content {
                 margin-top:   0.5rem;
               }
             }
-            @media screen and (max-width: 768px) {
-              .project-content {
-                position: relative;
-                display: grid;
+            .project-content{
+              @media screen and (max-width: 768px) {
+                  position: relative;
+                  display: grid;
               }
             }
           }
