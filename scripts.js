@@ -147,7 +147,7 @@ function initAnimations() {
           scroller: '[data-scroll-container]',
           start: 'top 100%',
           end: 'top 65%',
-          markers: 1,
+          markers: 0,
           scrub: true
       }
   });
