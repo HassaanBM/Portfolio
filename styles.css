@@ -439,6 +439,9 @@ footer{
   text-align:   center;
   display:      block;
   background:   var(--background-dark);
+  @media screen and (max-width: 768px){
+    padding:    2.5rem 1rem;
+  }
 }
 .container{
   width:                100%;
