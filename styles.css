@@ -32,7 +32,10 @@
   --background-dark:        hsl(0, 0%, 10%);
   --background-grid-opacity:  10%;
   --background-grid-color:    color-mix(in oklab, var(--background-light) var(--background-grid-opacity), var(--background-dark) var(--background-grid-opacity));
-  --background-grid-size:     15.2rem;
+  --background-grid-size:     clamp(2.5rem,6.65vw,15.2rem);
+  @media screen and (max-width: 768px){
+    --background-grid-opacity:  7%;
+  }
   --background-grid-width:    0.05em;
   --background-grid-image:    linear-gradient(90deg, var(--background-grid-color) var(--background-grid-width), transparent var(--background-grid-width)),
                               linear-gradient(0deg, var(--background-grid-color) var(--background-grid-width), transparent var(--background-grid-width));
@@ -55,19 +58,22 @@
   --font-family-primary:    'Work Sans', sans-serif;
   --font-family-secondary:  'Work Sans', sans-serif;
   --font-family-tertiary:   'Work Sans', sans-serif;
-  --font-size-h1:           3.00rem;
-  --font-size-h2:           2.50rem;
-  --font-size-h3:           2.25rem;
-  --font-size-p:            1.00rem;
-  --font-size-small:        0.85rem;
-  --font-size-large:        1.25rem;
+  --font-size-h1:           clamp(1.50rem, 3vw ,3.0rem);    /* 24px, 3% value of width-of-browser ,  48px */
+  --font-size-h2:           clamp(1.25rem, 2.5vw, 2.5rem);  /* 20px, 2.5% value of width-of-browser, 40px */
+  --font-size-h3:           clamp(1.15rem, 2.0vw, 2.0rem);  /* 16px, 2% value of widht-of-browser,   32px */
+  --font-size-p:            clamp(1.00rem, 1.5vw, 1.5rem);  /* 16px, 1.5% value of widht-of-browser, 24px */
+  --font-size-small:        clamp(0.75rem, 1.0vw, 1.0rem);  /* 12px, 1% value of widht-of-browser,   16px */
+  --font-size-large:        clamp(0.875rem, 1.35vw, 1.25rem);
   --font-size-navigation:   1.04rem;
+}
+/* Displays */
+.d-desktop{
+  @media screen and (max-width: 1024px){
+    display: none !important;
+  }
 }
 * {
   box-sizing: border-box;
-}
-@view-transition {
-  navigation: auto;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family:    var(--font-family-primary);
@@ -85,7 +91,7 @@ h3 {font-size: var(--font-size-h3);}
 h4 {font-size: var(--font-size-h4);}
 h5 {font-size: var(--font-size-h5);}
 h6 {font-size: var(--font-size-h6);}
-p  {font-size: var(--font-size-p);margin: 0;padding: 0.5rem 0;}
+p  {font-size: var(--font-size-p); margin: 0;padding: 0.5rem 0;}
 .d-flex{display:       flex;}
 .d-block{display:      block;}
 .d-grid{display:       grid;}
@@ -154,7 +160,7 @@ body {
   margin:               0;
   padding:              0;
   transition:           background-color 0.3s, color 0.3s;
-  background-size:      var(--background-grid-size) var(--background-grid-size);
+  background-size:      var(--background-grid-size) 200vh;
   background-image:     var(--background-grid-image);
   background-position:  center top;
   @media (prefers-color-scheme: dark) {
@@ -326,6 +332,17 @@ main.main-content {
           margin-right: 0.4rem;
         }
       }
+      .comma-mobile{
+        display: none;
+        @media screen and (max-width: 768px){
+          display: inline-block;
+        }
+      }
+      .comma-desktop{
+        @media screen and (max-width: 768px){
+          display: none;
+        }
+      }
       h1,h2,h3{
         overflow: hidden;
       }
@@ -344,7 +361,7 @@ main.main-content {
         padding-inline:   0px;
         list-style:       none;
         li{
-          margin-bottom:  2.5rem;
+          margin-bottom:  5rem;
           .project { 
             display:          block;
             padding:          1rem;
@@ -383,18 +400,18 @@ main.main-content {
               }
             }
             .project-tag{
-              position:       absolute;
               top:            1rem;
               right:          1rem;
               @media (prefers-color-scheme: dark) {background:    hsl(from var(--card-bg-dark)  h s 25% / 25%);}
               @media (prefers-color-scheme: light){background:    hsl(from var(--card-bg-light) h s 50% / 25%);}
               padding:        0.8rem 1rem;
               border-radius:  0.5rem;
+              order:          3;
+              display:        flex;
               @media screen and (max-width: 768px){
                 top:          0 !important;
                 right:        0 !important;
                 position:     relative !important;
-                order:        3;
                 margin-top:   0.5rem;
               }
             }
@@ -416,6 +433,12 @@ main.main-content {
       }
     }
   }
+}
+footer{
+  padding:      1rem;
+  text-align:   center;
+  display:      block;
+  background:   var(--background-dark);
 }
 .container{
   width:                100%;
