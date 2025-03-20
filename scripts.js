@@ -109,7 +109,7 @@ function initSmoothScroll(container) {
     locoScroll = new LocomotiveScroll({
         el: container.querySelector('[data-scroll-container]'),
         smooth: true,
-        lerp: 0.1,
+        lerp: 0.085,
         getDirection: true
     });
 
@@ -137,16 +137,17 @@ function initAnimations() {
   if(select('ul.projects')){
     // Homepage interactions
     gsap.from('ul.projects > li', {
-      y: 50,
-    //   'filter':'blur(10px)',
+      y: 100,
+      scale: 0.95,
       opacity: 0,
+    //   'filter':'blur(10px)',
     //   ease: 'power2.inOut',
       stagger: 1,
       scrollTrigger: {
-          trigger: 'ul.projects',
+          trigger: 'ul.projects > li',
           scroller: '[data-scroll-container]',
           start: 'top 100%',
-          end: 'top 65%',
+          end: 'top 55%',
           markers: 0,
           scrub: true
       }

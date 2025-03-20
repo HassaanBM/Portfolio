@@ -43,13 +43,15 @@
         </div>
 
         <!-- Social Links -->
-        <input type="checkbox" name="menu-trigger" id="menu-trigger" class="menu-trigger" />
+        <input type="checkbox" name="menu-trigger" id="menu-trigger" class="menu-trigger d-none" />
         <nav class="navigation">
-          <a class="nav-items d-none" href="./">Home</a>
-          <a class="nav-items d-none" href="about.html">About Me</a>
-          <a class="nav-items" href="https://be.net/hassaan_bm" target="_blank">Behance</a>
-          <a class="nav-items" href="https://hassaanbinmasham.com" target="_blank">Bento</a>
-          <label for="menu-trigger">
+          <ul>
+          <li><a class="nav-items d-none" href="./">Home</a></li>
+          <li><span>Download: </span><a href="Resume">Resume</a></li>
+          <li><a class="nav-items" href="https://be.net/hassaan_bm" target="_blank">Behance</a></li>
+          <li><a class="nav-items" href="https://hassaanbinmasham.com" target="_blank">Bento</a></li>
+          </ul>
+          <label for="menu-trigger" class="d-none">
             <span class="material-symbols-rounded">
               close
             </span>
@@ -60,8 +62,8 @@
     <!-- Header End -->
 
     <div class="scroll-container" data-scroll-container>
-      <main id="main" class="home-page main-content">
-        <section class="intro" data-scroll data-scroll-speel="-2">
+      <main id="main" class="home-page main-content"  data-scroll >
+        <section class="intro" data-scroll data-scroll-speed="-3">
           <div class="container">
             <div class="intro-text col">
               <p class="font-small freelance-label"><span class="status-light"></span>Available for freelance</p>
@@ -76,7 +78,7 @@
             </div>
           </div>
         </section>
-        <section class="work">
+        <section class="work"  data-scroll >
           <div class="container ">
             <h1>My Work</h1>
             <p>This is a selection of my work. For more, visit my <a href="https://be.net/hassaan_bm"
