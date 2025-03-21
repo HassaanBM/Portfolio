@@ -140,6 +140,7 @@ function initAnimations() {
       y: 100,
       scale: 0.95,
       opacity: 0,
+      'pointer-events': 'none',
     //   'filter':'blur(10px)',
     //   ease: 'power2.inOut',
       stagger: 1,
