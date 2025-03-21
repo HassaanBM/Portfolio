@@ -109,7 +109,7 @@ function initSmoothScroll(container) {
     locoScroll = new LocomotiveScroll({
         el: container.querySelector('[data-scroll-container]'),
         smooth: true,
-        lerp: 0.085,
+        lerp: 0.1,
         getDirection: true
     });
 

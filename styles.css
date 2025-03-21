@@ -21,7 +21,6 @@
 
 /* Fonts Import */
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,700,0,0&icon_names=close');
 
 
 /* General Variables */
@@ -30,7 +29,7 @@
   color-scheme:               dark light;
   --background-light:       hsl(0, 0%, 98%);
   --background-dark:        hsl(0, 0%, 10%);
-  --background-grid-opacity:  10%;
+  --background-grid-opacity:  5%;
   --background-grid-color:    color-mix(in oklab, var(--background-light) var(--background-grid-opacity), var(--background-dark) var(--background-grid-opacity));
   --background-grid-size:     clamp(2.5rem,6.65vw,15.2rem);
   @media screen and (max-width: 768px){
@@ -163,10 +162,11 @@ body {
   background-size:      var(--background-grid-size) 200vh;
   background-image:     var(--background-grid-image);
   background-position:  center top;
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) {
     background-color: var(--background-dark);
     color: var(--text-dark);
-  }
+  } 
+  */
   @media (prefers-color-scheme: light) {
     /* &::after {
       filter:         invert(1);
@@ -200,9 +200,9 @@ header{
   left:             0;
   right:            0;
   top:              0;
-  background:       hsl(from var(--card-bg-dark) H S L / 50%);
+  background:       hsl(from var(--card-bg-dark) H S L / 90%);
   @media (prefers-color-scheme: light) {
-    background:       hsl(from var(--card-bg-light) H S L / 50%);
+    background:       hsl(from var(--card-bg-light) H S L / 90%);
   }
   backdrop-filter:  blur(10px);
   border-bottom:    1px solid var(--background-grid-color);
@@ -223,6 +223,10 @@ header{
         gap:                1rem;
         text-decoration:    none;
         font-size:          var(--font-size-navigation);
+        color:              var(--text-light);
+        @media (prefers-color-scheme: dark) {
+          color:            var(--text-dark);
+        }
       }
     }
 
@@ -291,7 +295,7 @@ main.main-content {
         &.status-light {
           aspect-ratio: 1 / 1;
           width: 12px;
-          background: radial-gradient(hsl(120deg 100% 50%), hsl(120deg 100% 37%));
+          background: radial-gradient(hsl(20deg 100% 50%), hsl(29, 100%, 44%));
           border-radius: 100%;
           margin-right: 0.4rem;
         }
@@ -318,10 +322,8 @@ main.main-content {
     
     /* Work Section */
     &.work{
-      background-color: var(--card-bg-light);
-      @media (prefers-color-scheme: dark) {
-        background-color: var(--card-bg-dark);
-      }
+      background-color: var(--background-dark);
+      color: var(--text-dark);
       ul.projects{
         padding-block:    2rem;
         padding-inline:   0px;
@@ -344,14 +346,9 @@ main.main-content {
             position:         relative;
             border-radius:    0.5rem;
             transition:       all 0.3s ease;
-            /* background-color: hsl(from var(--background-grid-color) h s 50% / 5%); */
-            @media (prefers-color-scheme: dark) {background:    hsl(from var(--background-dark) h s l / 100%);}
-            @media (prefers-color-scheme: light){background:    hsl(from var(--background-light) h s l / 100%);}
-
-            /* Hover Transitions */
+            background:       hsl(from var(--card-bg-dark) h s l / 100%);
             &:hover{
-              @media (prefers-color-scheme: dark) {background:    hsl(from var(--background-dark)  h s l / 75%);}
-              @media (prefers-color-scheme: light){background:    hsl(from var(--background-light) h s l / 75%);}
+              background:       hsl(from var(--card-bg-dark) h s 05% / 25%);
             }
             @media screen and (min-width: 768px) {
               display:          flex;
@@ -413,7 +410,8 @@ footer{
   padding:      2rem 1rem;
   text-align:   center;
   display:      block;
-  background:   var(--background-dark);
+  background:   var(--card-bg-dark);
+  color: var(--text-dark);
   @media screen and (max-width: 768px){
     padding:    2.5rem 1rem;
   }
