@@ -237,7 +237,8 @@ function toggleMobileMenu() {
                 stagger: 0.12,
                 duration: 0.4,
                 ease: "power2.out"
-            }, "<+=0.1");
+            },
+        );
 
         const menuCheckbox = document.querySelector("#menu-trigger");
 
