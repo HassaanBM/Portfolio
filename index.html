@@ -5,149 +5,168 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hassaan Bin Masham - Product Designer</title>
+
+  <!-- Meta data -->
   <meta name="description"
     content="Hassaan Bin Masham is a Product Designer based in Pakistan. He has been crafting products stories and experiences for over a decade.">
   <meta name="keywords"
     content="product Desiger, UI/UX Designer, Web Designer, Graphic Designer, Pakistan, Product Designer in Pakistan, Hassaan Bin Masham">
   <meta name="author" content="Hassaan Bin Masham">
+
+  <!-- Fav icons -->
   <link href="res/icon-light.png" rel="icon" media="(prefers-color-scheme: light)">
   <link href="res/icon-dark.png" rel="icon" media="(prefers-color-scheme: dark)">
 
   <!-- Styles -->
   <link rel="stylesheet" href="res/animations.css" />
   <link rel="stylesheet" href="res/styles.css" />
-  <link rel="stylesheet" href="res/locomotive.css" />
 
-  <!-- jquerry -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body data-barba="wrapper">
-  <div class="c-loader js-loader">
+
+  <!-- Preloader -->
+  <div class="c-loader js-loader" style="display: none;">
     <div class="c-loader__mask js-loader__mask">
       <div class="c-loader__inner js-loader__inner">
         <!-- <video src="showreel.mp4" autoplay muted loop></video> -->
-      </div> <!-- this will scale up -->
+      </div>
+      <!-- this will scale up -->
     </div>
   </div>
+  <!-- Preloader End -->
 
 
-  <div class="main-content" data-barba="container" data-barba-namespace="Home">
-    <!-- Header Start -->
-    <header class="header">
-      <div class="container header-wrapper">
-        <div class="logo-area">
-          <a href="./" class="logo-wrapper" target="_top" title="Go to Home">
-            Hassaan_BM
-          </a>
-        </div>
-
-        <!-- Social Links -->
-        <input type="checkbox" name="menu-trigger" id="menu-trigger" class="menu-trigger d-none" />
-        <nav class="navigation">
-          <ul>
-          <li><a class="nav-items d-none" href="./">Home</a></li>
-          <li><span>Download: </span><a href="Resume">Resume</a></li>
-          <li><a class="nav-items" href="https://be.net/hassaan_bm" target="_blank">Behance</a></li>
-          <li><a class="nav-items" href="https://hassaanbinmasham.com" target="_blank">Bento</a></li>
-          </ul>
-          <label for="menu-trigger" class="d-none">
-            <span class="material-symbols-rounded">
-              close
-            </span>
-          </label>
-        </nav>
-      </div>
-    </header>
-    <!-- Header End -->
-
-    <div class="scroll-container" data-scroll-container>
-      <main id="main" class="home-page main-content"  data-scroll >
-        <section class="intro" data-scroll data-scroll-speed="-3.85">
-          <div class="container">
-            <div class="intro-text col">
-              <p class="font-small freelance-label"><span class="status-light"></span>Available for freelance</p>
-              <h1>Hello<span class="comma-mobile">, </span><span class="first-name"><span class="comma-desktop">,</span> I'm Hassaan</span> <span class="middle-name">Bin</span> <span class="last-name">Masham</span></h1>
-              <h2><span class="position">Designer in Karachi </span><span class="country">, Pakistan.</span></h2>
-              <p class="font-large">
-                <span class="d-desktop">Let's connect: </span>
-                <a href="mailto:hassaanbinmasham@gmail.com?subject=Hello Hassaan&body=Hi, 
-                  I found you through your website and just wanted to say hi!">hassaanbinmasham@gmail.com
-                </a>
-              </p>
-            </div>
+  <div id="smooth-wrapper">
+    <div id="smooth-content" class="main-content" data-barba="container" data-barba-namespace="Home">
+      <!-- Header Start -->
+      <header class="header"  data-lag="0.12">
+        <div class="container header-wrapper">
+          <div class="logo-area">
+            <a href="./" class="logo-wrapper" target="_top" title="Go to Home">
+              Hassaan_BM
+            </a>
           </div>
-        </section>
-        <section class="work"  data-scroll>
-          <div class="container ">
-            <h1>My Work</h1>
-            <p>This is a selection of my work. For more, visit my <a href="https://be.net/hassaan_bm"
-                target="_blank">Behance</a> profile.</p>
-            <ul class="projects">
-              <li class="project-1 project-list-item">
-                <a class="project" href="https://www.be.net/gallery/145545095/HCAI-Surveillance-App" target="_blank">
-                  <div class="project-image-wrapper">
-                    <img src="res/hcai.jpg" alt="HCAI" class="project-image" loading="lazy">
-                  </div>
-                  <div class="project-content">
-                    <div class="project-tag">Mobile App, UI / UX</div>
-                    <h3 class="project-title">HCAI</h3>
-                    <p class="project-description">A concept of a mobile app that helps people move their goods, this was hoped to reduce the overall hastle of finding a truck or a moving service.</p>
-                </div>
-                </a>
-              </li>
-              <li class="project-2 project-list-item">
-                <a class="project" href="https://www.be.net/gallery/213647379/Frovi-Link" target="_blank">
-                  <div class="project-image-wrapper">
-                    <img src="res/Frovilink.jpg" alt="naqlista" class="project-image" loading="lazy">
-                  </div>
-                  <div class="project-content">
-                    <div class="project-tag">Mobile App, UI / UX</div>
-                    <h3 class="project-title">Frovi-Link</h3>
-                    <p class="project-description">A concept of a mobile app that helps people move their goods, this was hoped to reduce the overall hastle of finding a truck or a moving service.</p>
-                </div>
-                </a>
-              </li>
-              <li class="project-3 project-list-item">
-                <a class="project" href="https://www.be.net/gallery/145409993/Gift-Card" target="_blank">
-                  <div class="project-image-wrapper">
-                    <img src="res/gift-card.jpg" alt="naqlista" class="project-image" loading="lazy">
-                  </div>
-                  <div class="project-content">
-                    <div class="project-tag">Mobile App, UI / UX</div>
-                    <h3 class="project-title">Gift Card</h3>
-                    <p class="project-description">Designed the user experience for GoZayaan’s gift card program, which started as a small feature but quickly grew into a full vertical. Users’ familiarity with gift cards made adoption seamless, creating a new way to engage with the platform.</p>
-                </div>
-                </a>
-              </li>
-              <li class="project-4 project-list-item">
-                <a class="project" href="https://www.be.net/gallery/145665303/Naqlista" target="_blank">
-                  <div class="project-image-wrapper">
-                    <img src="res/naqlista.jpg" alt="naqlista" class="project-image" loading="lazy">
-                  </div>
-                  <div class="project-content">
-                    <div class="project-tag">Mobile App, UI / UX</div>
-                    <h3 class="project-title">Naqlista</h3>
-                    <p class="project-description">Designed a mobile app concept to simplify moving by making it easier to find trucks and moving services. The goal was to reduce the hassle of coordinating logistics, offering users a seamless experience.</p>
-                </div>
-                </a>
-              </li>
+
+          <!-- Social Links -->
+          <input type="checkbox" name="menu-trigger" id="menu-trigger" class="menu-trigger d-none" />
+          <nav class="navigation">
+            <ul>
+            <li><a class="nav-items d-none" href="./">Home</a></li>
+            <li><span>Download: </span><a href="Resume">Resume</a></li>
+            <li><a class="nav-items" href="https://be.net/hassaan_bm" target="_blank">Behance</a></li>
+            <li><a class="nav-items" href="https://hassaanbinmasham.com" target="_blank">Bento</a></li>
             </ul>
-          </div>
-        </section>
+            <label for="menu-trigger" class="d-none">
+              <span class="material-symbols-rounded">
+                close
+              </span>
+            </label>
+          </nav>
+        </div>
+      </header>
+      <!-- Header End -->
 
-      </main>
-      <footer>
-        Let's connect.
-      </footer>
+      <div class="scroll-container">
+        <main id="main" class="home-page main-content">
+
+
+          <section class="intro">
+            <div class="container">
+              <div class="intro-text col" data-speed="0.85">
+                <p class="font-small freelance-label"><span class="status-light"></span>Available for freelance</p>
+                <h1>Hello<span class="comma-mobile">, </span><span class="first-name"><span class="comma-desktop">,</span> I'm Hassaan</span> <span class="middle-name">Bin</span> <span class="last-name">Masham</span></h1>
+                <h2><span class="position">Designer in Karachi </span><span class="country">, Pakistan.</span></h2>
+                <p class="font-large">
+                  <span class="d-desktop">Let's connect: </span>
+                  <a href="mailto:hassaanbinmasham@gmail.com?subject=Hello Hassaan&body=Hi, 
+                    I found you through your website and just wanted to say hi!">hassaanbinmasham@gmail.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="work">
+            <div class="container ">
+              <h1>My Work</h1>
+              <p>This is a selection of my work. For more, visit my <a href="https://be.net/hassaan_bm"
+                  target="_blank">Behance</a> profile.</p>
+              <ul class="projects">
+                <li class="project-1 project-list-item">
+                  <a class="project" href="https://www.be.net/gallery/145545095/HCAI-Surveillance-App" target="_blank">
+                    <div class="project-image-wrapper">
+                      <img src="res/projects/hcai.jpg" alt="HCAI" class="project-image" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                      <div class="project-tag">Mobile App, UI / UX</div>
+                      <h3 class="project-title">HCAI</h3>
+                      <p class="project-description">A concept of a mobile app that helps people move their goods, this was hoped to reduce the overall hastle of finding a truck or a moving service.</p>
+                  </div>
+                  </a>
+                </li>
+                <li class="project-2 project-list-item">
+                  <a class="project" href="https://www.be.net/gallery/213647379/Frovi-Link" target="_blank">
+                    <div class="project-image-wrapper">
+                      <img src="res/projects/frovilink.jpg" alt="naqlista" class="project-image" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                      <div class="project-tag">Mobile App, UI / UX</div>
+                      <h3 class="project-title">Frovi-Link</h3>
+                      <p class="project-description">A concept of a mobile app that helps people move their goods, this was hoped to reduce the overall hastle of finding a truck or a moving service.</p>
+                  </div>
+                  </a>
+                </li>
+                <li class="project-3 project-list-item">
+                  <a class="project" href="https://www.be.net/gallery/145409993/Gift-Card" target="_blank">
+                    <div class="project-image-wrapper">
+                      <img src="res/projects/gift-card.jpg" alt="naqlista" class="project-image" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                      <div class="project-tag">Mobile App, UI / UX</div>
+                      <h3 class="project-title">Gift Card</h3>
+                      <p class="project-description">Designed the user experience for GoZayaan’s gift card program, which started as a small feature but quickly grew into a full vertical. Users’ familiarity with gift cards made adoption seamless, creating a new way to engage with the platform.</p>
+                  </div>
+                  </a>
+                </li>
+                <li class="project-4 project-list-item">
+                  <a class="project" href="https://www.be.net/gallery/145665303/Naqlista" target="_blank">
+                    <div class="project-image-wrapper">
+                      <img src="res/projects/naqlista.jpg" alt="naqlista" class="project-image" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                      <div class="project-tag">Mobile App, UI / UX</div>
+                      <h3 class="project-title">Naqlista</h3>
+                      <p class="project-description">Designed a mobile app concept to simplify moving by making it easier to find trucks and moving services. The goal was to reduce the hassle of coordinating logistics, offering users a seamless experience.</p>
+                  </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          
+
+        </main>
+        <footer>
+          Let's connect.
+        </footer>
+      </div>
     </div>
   </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
-<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.6.1/dist/locomotive-scroll.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/ScrollTrigger.min.js"></script>
+
+<!-- GSAP + Plugins -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+<!-- ScrollSmoother requires ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
+
 <script src="res/scripts.js"></script>
 
 </html>
