@@ -253,6 +253,7 @@ header{
 
 
   .navigation {
+  overflow: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
 
