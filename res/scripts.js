@@ -201,6 +201,7 @@ function toggleMobileMenu() {
         menuTimeline
             .to(".navigation", {
                 x: "-100dvw", // brings it into view from right to left
+                width: "100%",
                 duration: 0.6,
                 ease: "power4.out"
             })

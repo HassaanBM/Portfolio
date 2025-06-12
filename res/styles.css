@@ -150,8 +150,22 @@ p  {font-size: var(--font-size-p); margin: 0;padding: 0.5rem 0;}
   height: 100%; /* Ensure the container takes the full height */
   overflow: hidden; /* Prevent overflow outside the container */
 }
-
-
+/* Wrapper acts as the viewport */
+#smooth-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+/* Content scrolls smoothly inside the wrapper */
+#smooth-content {
+  position: relative;
+  width: 100%;
+  will-change: transform;
+  overflow: visible;
+}
 /* Body Styling */
 body {
   cursor:               var(--custom-cursor);
@@ -165,6 +179,7 @@ body {
   background-size:      var(--background-grid-size) 200vh;
   background-image:     var(--background-grid-image);
   background-position:  center top;
+  overflow-x:           hidden;
   /* @media (prefers-color-scheme: dark) {
     background-color: var(--background-dark);
     color: var(--text-dark);
@@ -239,8 +254,6 @@ header{
       @media screen and (max-width: 768px){
         -webkit-appearance: none;
         display:            block;
-        position:           relative;
-        z-index:            100;
         width:              3.75rem;
         height:             1.75rem;
         background:         url('icons/menu-icon.svg') no-repeat center center;
@@ -262,7 +275,6 @@ header{
       left:       100vw;
       top:        000dvh;
       height:     100dvh;
-      width:      100dvw;
       right:      0;
       bottom:     0;
       display:    flex;
