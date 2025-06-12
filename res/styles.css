@@ -180,6 +180,14 @@ body {
   background-image:     var(--background-grid-image);
   background-position:  center top;
   overflow-x:           hidden;
+  &.is-loading {
+    overflow: hidden;
+    pointer-events: none;
+    * {
+      pointer-events: none;
+    }
+  }
+
   /* @media (prefers-color-scheme: dark) {
     background-color: var(--background-dark);
     color: var(--text-dark);
