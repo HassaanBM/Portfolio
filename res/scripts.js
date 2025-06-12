@@ -218,10 +218,10 @@ window.addEventListener("resize", () => {
 // ----------------------------------------
 // 10. Mobile Menu Animation with Checkbox Trigger
 // ----------------------------------------
-
-// Responsive check mobile menu function
 function toggleMobileMenu() {
     if (window.innerWidth < 768) {
+        const smoother = ScrollSmoother.get();
+
         const menuTimeline = gsap.timeline({ paused: true, reversed: true });
 
         menuTimeline
@@ -229,7 +229,11 @@ function toggleMobileMenu() {
                 x: "-100dvw",
                 width: "100%",
                 duration: 0.6,
-                ease: "power4.out"
+                ease: "power4.out",
+                onStart: () => {
+                    if (smoother) smoother.paused(true); // Lock scroll before animation
+                    document.body.style.overflow = "hidden"; // Fallback lock
+                }
             })
             .from(".navigation ul li", {
                 opacity: 0,
@@ -237,22 +241,27 @@ function toggleMobileMenu() {
                 stagger: 0.12,
                 duration: 0.4,
                 ease: "power2.out"
-            },
-        );
+            }, "<+=0.1");
 
         const menuCheckbox = document.querySelector("#menu-trigger");
 
-        menuCheckbox.addEventListener("change", (e) => {
-            const smoother = ScrollSmoother.get();
+        // Remove any previously attached listener first
+        menuCheckbox?.removeEventListener("change", window._menuToggleHandler);
 
+        // Save handler globally so we can unbind it on re-init
+        window._menuToggleHandler = function (e) {
             if (e.target.checked) {
                 menuTimeline.play();
-                if (smoother) smoother.paused(true); // Lock scroll
             } else {
-                menuTimeline.reverse();
-                if (smoother) smoother.paused(false); // Unlock scroll
+                menuTimeline.reverse().eventCallback("onReverseComplete", () => {
+                    if (smoother) smoother.paused(false); // Unlock scroll
+                    document.body.style.overflow = ""; // Restore scroll
+                });
             }
-        });
+        };
+
+        // Attach the toggle handler
+        menuCheckbox?.addEventListener("change", window._menuToggleHandler);
     }
 }
 
