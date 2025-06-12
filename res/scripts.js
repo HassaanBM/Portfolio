@@ -218,57 +218,75 @@ window.addEventListener("resize", () => {
 // ----------------------------------------
 // 10. Mobile Menu Animation with Checkbox Trigger
 // ----------------------------------------
+
 function toggleMobileMenu() {
-    if (window.innerWidth < 768) {
-        const smoother = ScrollSmoother.get();
+    const menuCheckbox = document.querySelector("#menu-trigger");
+    if (!menuCheckbox || window.innerWidth >= 768) return;
 
-        const menuTimeline = gsap.timeline({ paused: true, reversed: true });
+    const smoother = ScrollSmoother.get();
 
-        menuTimeline
-            .to(".navigation", {
-                x: "-100dvw",
-                width: "100%",
-                duration: 0.6,
-                ease: "power4.out",
-                onStart: () => {
-                    if (smoother) smoother.paused(true); // Lock scroll before animation
-                    document.body.style.overflow = "hidden"; // Fallback lock
-                }
-            })
-            .from(".navigation ul li", {
-                opacity: 0,
-                y: 30,
-                stagger: 0.12,
-                duration: 0.4,
-                ease: "power2.out"
-            }, "<+=0.1");
+    // Create the timeline (only once)
+    const menuTimeline = gsap.timeline({ paused: true, reversed: true });
 
-        const menuCheckbox = document.querySelector("#menu-trigger");
-
-        // Remove any previously attached listener first
-        menuCheckbox?.removeEventListener("change", window._menuToggleHandler);
-
-        // Save handler globally so we can unbind it on re-init
-        window._menuToggleHandler = function (e) {
-            if (e.target.checked) {
-                menuTimeline.play();
-            } else {
-                menuTimeline.reverse().eventCallback("onReverseComplete", () => {
-                    if (smoother) smoother.paused(false); // Unlock scroll
-                    document.body.style.overflow = ""; // Restore scroll
-                });
+    menuTimeline
+        .to(".navigation", {
+            x: "-100dvw",
+            width: "100%",
+            duration: 0.6,
+            ease: "power4.out",
+            onStart: () => {
+                // Lock scrolling (GSAP + CSS + touch)
+                if (smoother) smoother.paused(true);
+                document.body.classList.add("menu-open");
+                disableScrollTouch();
             }
-        };
+        })
+        .from(".navigation ul li", {
+            opacity: 0,
+            y: 30,
+            stagger: 0.12,
+            duration: 0.4,
+            ease: "power2.out"
+        }, "<+=0.1");
 
-        // Attach the toggle handler
-        menuCheckbox?.addEventListener("change", window._menuToggleHandler);
-    }
+    // Remove old listener if any
+    menuCheckbox.removeEventListener("change", window._menuToggleHandler);
+
+    window._menuToggleHandler = function (e) {
+        if (e.target.checked) {
+            menuTimeline.play();
+        } else {
+            menuTimeline.reverse().eventCallback("onReverseComplete", () => {
+                // Unlock scroll
+                if (smoother) smoother.paused(false);
+                document.body.classList.remove("menu-open");
+                enableScrollTouch();
+            });
+        }
+    };
+
+    menuCheckbox.addEventListener("change", window._menuToggleHandler);
 }
 
-// Call on load
+// Helpers to disable/enable scroll gestures
+function disableScrollTouch() {
+    document.body.style.overflow = "hidden";
+    document.body.style.height = "100vh";
+    const wrapper = document.getElementById("smooth-wrapper");
+    if (wrapper) wrapper.style.touchAction = "none";
+}
+
+function enableScrollTouch() {
+    document.body.style.overflow = "";
+    document.body.style.height = "";
+    const wrapper = document.getElementById("smooth-wrapper");
+    if (wrapper) wrapper.style.touchAction = "";
+}
+
+// Init on load
 window.addEventListener("load", toggleMobileMenu);
 
-// Call on resize with debounce
+// Reinit on resize with debounce
 let resizeTimeoutCheck;
 window.addEventListener("resize", () => {
     clearTimeout(resizeTimeoutCheck);

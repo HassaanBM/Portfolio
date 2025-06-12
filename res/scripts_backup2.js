@@ -14,12 +14,16 @@
  * 10. Mobile Menu Animation
  */
 
+
+
+
 // ----------------------------------------
 // 01. Context Menu Disable
 // ----------------------------------------
 document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
 }, false);
+
 
 
 
@@ -34,6 +38,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 
 
+
 // ----------------------------------------
 // 03. Smooth Scroll Initialization
 // ----------------------------------------
@@ -43,6 +48,7 @@ ScrollSmoother.create({
     smooth: 1.63,                 // Smoothing intensity
     effects: true                 // Enable data-speed, data-lag effects
 });
+
 
 
 
@@ -63,11 +69,13 @@ const container = select('.main-content');
 
 
 
+
 // ----------------------------------------
 // 05. Loader Initial Setup
 // ----------------------------------------
 gsap.set(loader, { autoAlpha: 1 });
 gsap.set(loaderInner, { scaleY: 0.005, transformOrigin: 'bottom' });
+
 
 
 
@@ -101,12 +109,14 @@ gsap.timeline()
     .add(tlLoaderIn)
     .add(tlLoaderOut)
     .eventCallback("onComplete", () => {
-    document.body.classList.remove("is-loading");
-  });
+        document.body.classList.remove("is-loading");
+    });
 
 setTimeout(() => {
-  document.body.classList.remove("is-loading");
+    document.body.classList.remove("is-loading");
 }, 8000); // force unlock after 8s max
+
+
 
 
 
@@ -134,6 +144,9 @@ tlIntroduction
 
 // Wrap into Master Timeline
 gsap.timeline().add(tlIntroduction);
+
+
+
 
 
 
@@ -175,14 +188,9 @@ function handleMobileStickyNav() {
 // Call on load
 window.addEventListener("load", handleMobileStickyNav);
 
-// Call on resize with debounce
-let resizeTimeout;
-window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        handleMobileStickyNav();
-    }, 250);
-});
+
+
+
 
 
 
@@ -191,15 +199,17 @@ window.addEventListener("resize", () => {
 // ----------------------------------------
 // 09. Refresh ScrollTrigger
 // ----------------------------------------
-ScrollTrigger.refresh();
-let resizeTimeout;
+let resizeHandlerTimeout;
 window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        createMobileStickyNav();  // Re-evaluate sticky nav on resize
-        ScrollTrigger.refresh();  // Recalculate scroll positions
+    clearTimeout(resizeHandlerTimeout);
+    resizeHandlerTimeout = setTimeout(() => {
+        handleMobileStickyNav();     // Re-evaluate sticky nav on resize
+        ScrollTrigger.refresh();     // Recalculate scroll positions
     }, 250);
 });
+
+
+
 
 
 
@@ -208,20 +218,22 @@ window.addEventListener("resize", () => {
 // ----------------------------------------
 // 10. Mobile Menu Animation with Checkbox Trigger
 // ----------------------------------------
-
-// Responsive check mobile menu function
 function toggleMobileMenu() {
     if (window.innerWidth < 768) {
-        // Create the menu timeline (initially paused and reversed)
+        const smoother = ScrollSmoother.get();
+
         const menuTimeline = gsap.timeline({ paused: true, reversed: true });
 
-        // Animate the menu in and stagger nav items
         menuTimeline
             .to(".navigation", {
-                x: "-100dvw", // brings it into view from right to left
+                x: "-100dvw",
                 width: "100%",
                 duration: 0.6,
-                ease: "power4.out"
+                ease: "power4.out",
+                onStart: () => {
+                    if (smoother) smoother.paused(true); // Lock scroll before animation
+                    document.body.style.overflow = "hidden"; // Fallback lock
+                }
             })
             .from(".navigation ul li", {
                 opacity: 0,
@@ -229,28 +241,38 @@ function toggleMobileMenu() {
                 stagger: 0.12,
                 duration: 0.4,
                 ease: "power2.out"
-            }, "<+=0.1"); // slight delay after nav appears
+            }, "<+=0.1");
 
-        // Event listener for checkbox toggle
         const menuCheckbox = document.querySelector("#menu-trigger");
 
-        menuCheckbox.addEventListener("change", (e) => {
+        // Remove any previously attached listener first
+        menuCheckbox?.removeEventListener("change", window._menuToggleHandler);
+
+        // Save handler globally so we can unbind it on re-init
+        window._menuToggleHandler = function (e) {
             if (e.target.checked) {
                 menuTimeline.play();
             } else {
-                menuTimeline.reverse();
+                menuTimeline.reverse().eventCallback("onReverseComplete", () => {
+                    if (smoother) smoother.paused(false); // Unlock scroll
+                    document.body.style.overflow = ""; // Restore scroll
+                });
             }
-        });
+        };
+
+        // Attach the toggle handler
+        menuCheckbox?.addEventListener("change", window._menuToggleHandler);
     }
 }
-// Call it on load
+
+// Call on load
 window.addEventListener("load", toggleMobileMenu);
 
-// Call it on resize with debounce
+// Call on resize with debounce
 let resizeTimeoutCheck;
 window.addEventListener("resize", () => {
-  clearTimeout(resizeTimeoutCheck);
-  resizeTimeoutCheck = setTimeout(() => {
-    toggleMobileMenu();
-  }, 250);
+    clearTimeout(resizeTimeoutCheck);
+    resizeTimeoutCheck = setTimeout(() => {
+        toggleMobileMenu();
+    }, 250);
 });
