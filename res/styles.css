@@ -239,6 +239,8 @@ header{
       @media screen and (max-width: 768px){
         -webkit-appearance: none;
         display:            block;
+        position:           relative;
+        z-index:            100;
         width:              3.75rem;
         height:             1.75rem;
         background:         url('icons/menu-icon.svg') no-repeat center center;
