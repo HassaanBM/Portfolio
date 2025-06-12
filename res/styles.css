@@ -187,6 +187,10 @@ body {
       pointer-events: none;
     }
   }
+  &.menu-open {
+    overflow: hidden;
+    height: 100vh;
+  }
 
   /* @media (prefers-color-scheme: dark) {
     background-color: var(--background-dark);
