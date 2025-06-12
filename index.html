@@ -14,8 +14,8 @@
   <meta name="author" content="Hassaan Bin Masham">
 
   <!-- Fav icons -->
-  <link href="res/icon-light.png" rel="icon" media="(prefers-color-scheme: light)">
-  <link href="res/icon-dark.png" rel="icon" media="(prefers-color-scheme: dark)">
+  <link href="/res/icons/icon-light.png" rel="icon" media="(prefers-color-scheme: light)">
+  <link href="/res/icons/icon-dark.png" rel="icon" media="(prefers-color-scheme: dark)">
 
   <!-- Styles -->
   <link rel="stylesheet" href="res/animations.css" />
@@ -49,13 +49,14 @@
           </div>
 
           <!-- Social Links -->
-          <input type="checkbox" name="menu-trigger" id="menu-trigger" class="menu-trigger d-none" />
+          <input type="checkbox" name="menu-trigger" id="menu-trigger" class="menu-trigger only-mobile" />
           <nav class="navigation">
             <ul>
             <li><a class="nav-items d-none" href="./">Home</a></li>
             <li><span>Download: </span><a href="Resume">Resume</a></li>
             <li><a class="nav-items" href="https://be.net/hassaan_bm" target="_blank">Behance</a></li>
             <li><a class="nav-items" href="https://hassaanbinmasham.com" target="_blank">Bento</a></li>
+            <li><label class="nav-items" for="menu-trigger" target="_blank">Close</label></li>
             </ul>
             <label for="menu-trigger" class="d-none">
               <span class="material-symbols-rounded">
