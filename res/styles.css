@@ -269,6 +269,8 @@ header{
       + label{
         display:            none;
         @media screen and (max-width: 768px){
+            display:      block;
+            cursor:       pointer;
             width:        3.75rem;
             height:       1.75rem;
             color:        var(--text-dark);
