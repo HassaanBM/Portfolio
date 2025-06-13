@@ -212,6 +212,11 @@ body {
     cursor:   var(--custom-cursor-pointer) !important;
     color:    currentColor
   }
+    @media screen and (min-width: 768px) {
+      > nav.mobile-navigation {
+        display: none !important;
+      }
+    }
 }
 
 
@@ -261,8 +266,9 @@ header{
       display:            none;
       -webkit-appearance: none;
       appearance:         none;
-      @media screen and (max-width: 768px){
-        + label{
+      + label{
+        display:            none;
+        @media screen and (max-width: 768px){
             width:        3.75rem;
             height:       1.75rem;
             color:        var(--text-dark);
