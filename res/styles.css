@@ -394,6 +394,14 @@ main.main-content {
           margin-right: 0.4rem;
         }
       }
+      .freelance-label{
+        display:          inline-flex;
+        padding-inline:   0.5rem;
+        @media screen and (max-width: 768px){
+          border:         1px solid;
+          border-radius:  1rem;
+        }
+      }
       .comma-mobile{
         display: none;
         @media screen and (max-width: 768px){
