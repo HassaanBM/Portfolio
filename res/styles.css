@@ -258,17 +258,14 @@ header{
       }
     }
     .menu-trigger{
-      display:          none;
+      display:            none;
+      -webkit-appearance: none;
+      appearance:         none;
       @media screen and (max-width: 768px){
-        -webkit-appearance: none;
-        display:            block;
-        width:              3.75rem;
-        height:             1.75rem;
-        background:         url('icons/menu-icon.svg') no-repeat center center;
-        background-size:    contain;
-        cursor:             pointer;
-        &:checked + .navigation {
-          left:      0;
+        + label{
+            width:        3.75rem;
+            height:       1.75rem;
+            color:        var(--text-dark);
         }
       }
     }
@@ -337,22 +334,24 @@ header{
   }
 
   @media screen and (max-width: 768px) {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    left: 100vw;
+    left: 120vw;
     height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: left 0.3s ease;
+    transition: left 0.6s ease, transform 0.3s ease 0.3s;
     background: hsl(from var(--card-bg-dark) h s l / 100%);
     will-change: transform;
+    transform: skewX(5deg) translateX(80px);
   }
 
   &.mobile-navigation:has(+ div#smooth-wrapper input#menu-trigger:checked) {
     width: 100%;
     left: 0;
     position: fixed;
+    transform: skewX(0deg) translateX(0px);
   }
 
 }
