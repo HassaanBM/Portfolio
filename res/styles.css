@@ -187,10 +187,6 @@ body {
       pointer-events: none;
     }
   }
-  &.menu-open {
-    overflow: hidden;
-    height: 100vh;
-  }
 
   /* @media (prefers-color-scheme: dark) {
     background-color: var(--background-dark);
@@ -271,71 +267,97 @@ header{
         background:         url('icons/menu-icon.svg') no-repeat center center;
         background-size:    contain;
         cursor:             pointer;
-      }
-    }
-  }
-
-
-
-  .navigation {
-  overflow: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
-
-    @media screen and (max-width: 768px){
-      position:   absolute;
-      left:       100vw;
-      top:        000dvh;
-      height:     100dvh;
-      right:      0;
-      bottom:     0;
-      display:    flex;
-      align-items: center;
-      justify-content: center;
-      background: hsl(from var(--card-bg-dark)  h s l / 100%);
-      will-change: transform;
-      transition: none; /* GSAP handles animation */
-    }
-
-    ul{
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-      @media screen and (min-width: 768px){
-        display: flex;
-        justify-content: flex-end;
-        gap: 1rem !important;
-      }
-      gap: 2rem;
-      li{
-        list-style: none;
-        color: hsl(from var(--text-dark) H S L / 50%);
-        @media screen and (max-width: 768px){
-          > span{
-            display: none;
-          }
-        }
-        > * {
-          font-size:          var(--font-size-navigation);
-          text-decoration:    none;
-          transition:         color 0.3s;
-          color:              var(--text-light);
-          @media (prefers-color-scheme: dark) {
-            color: var(--text-dark);
-          }
-          &:hover {
-            @media (prefers-color-scheme: dark) {
-              color:          var(--accent-light)
-            }
-            @media (prefers-color-scheme: light) {
-              color:          var(--accent-light)
-            }
-          }
+        &:checked + .navigation {
+          left:      0;
         }
       }
     }
   }
 }
+
+
+
+
+
+/* Navigation */
+.navigation {
+  overflow: hidden auto;
+  z-index: 2;
+  -webkit-overflow-scrolling: touch;
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+
+    @media screen and (min-width: 768px) {
+      justify-content: flex-end;
+      gap: 1rem !important;
+    }
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    li {
+      list-style: none;
+      color: hsl(from var(--text-dark) H S L / 50%);
+
+      @media screen and (max-width: 768px) {
+        > span {
+          display: none;
+        }
+      }
+
+      > * {
+        font-size: var(--font-size-navigation);
+        text-decoration: none;
+        transition: color 0.3s;
+        color: var(--text-light);
+
+        @media (prefers-color-scheme: dark) {
+          color: var(--text-dark);
+        }
+
+        &:hover {
+          @media (prefers-color-scheme: dark),
+          (prefers-color-scheme: light) {
+            color: var(--accent-light);
+          }
+        }
+      }
+
+      label {
+        @media screen and (min-width: 768px) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    inset: 0;
+    left: 100vw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease;
+    background: hsl(from var(--card-bg-dark) h s l / 100%);
+    will-change: transform;
+  }
+
+  &.mobile-navigation:has(+ div#smooth-wrapper input#menu-trigger:checked) {
+    width: 100%;
+    left: 0;
+    position: fixed;
+  }
+
+}
+
+
 
 
 

@@ -45,7 +45,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 ScrollSmoother.create({
     wrapper: "#smooth-wrapper",   // Outer container
     content: "#smooth-content",   // Scrollable content
-    smooth: 1.63,                 // Smoothing intensity
+    smooth: 1.763,                 // Smoothing intensity
     effects: true                 // Enable data-speed, data-lag effects
 });
 
@@ -64,8 +64,22 @@ const loaderInner = select('.js-loader__inner');
 const loaderMask = select('.js-loader__mask');
 const progressBar = select('.js-loader__progress');
 const container = select('.main-content');
+const nav = document.querySelector("nav.navigation");
+const wrapper = document.querySelector("div#smooth-wrapper");
+const isMobile = window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent)
 
 
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (isMobile) {
+    if (nav && wrapper) {
+      const navClone = nav.cloneNode(true);
+      navClone.classList.add("mobile-navigation"); // Add new class
+      nav.remove(); // Remove original
+      wrapper.parentNode.insertBefore(navClone, wrapper); // Move before #smooth-wrapper
+    }
+  }
+});
 
 
 
@@ -155,38 +169,38 @@ gsap.timeline().add(tlIntroduction);
 // ----------------------------------------
 // 08. Sticky Navigation Scroll Update
 // ----------------------------------------
-let mobileStickyNavTrigger = null;
+// let mobileStickyNavTrigger = null;
 
-// Create or destroy ScrollTrigger based on screen width
-function handleMobileStickyNav() {
-    const isMobile = window.innerWidth < 768;
+// // Create or destroy ScrollTrigger based on screen width
+// function handleMobileStickyNav() {
+//     const isMobile = window.innerWidth < 768;
 
-    // If on desktop and trigger exists, kill it
-    if (!isMobile && mobileStickyNavTrigger) {
-        mobileStickyNavTrigger.kill();
-        mobileStickyNavTrigger = null;
-        gsap.set(".navigation", { clearProps: "y" });
-        ScrollTrigger.refresh();
-        return;
-    }
+//     // If on desktop and trigger exists, kill it
+//     if (!isMobile && mobileStickyNavTrigger) {
+//         mobileStickyNavTrigger.kill();
+//         mobileStickyNavTrigger = null;
+//         gsap.set(".navigation", { clearProps: "y" });
+//         ScrollTrigger.refresh();
+//         return;
+//     }
 
-    // If on mobile and not already created, create it
-    if (isMobile && !mobileStickyNavTrigger) {
-        mobileStickyNavTrigger = ScrollTrigger.create({
-            trigger: "#smooth-content",
-            start: "top top",
-            end: "bottom bottom",
-            onUpdate: self => {
-                const scrollY = self.scroll();
-                gsap.set(".navigation", { y: scrollY });
-            }
-        });
-        ScrollTrigger.refresh();
-    }
-}
+//     // If on mobile and not already created, create it
+//     if (isMobile && !mobileStickyNavTrigger) {
+//         mobileStickyNavTrigger = ScrollTrigger.create({
+//             trigger: "#smooth-content",
+//             start: "top top",
+//             end: "bottom bottom",
+//             onUpdate: self => {
+//                 const scrollY = self.scroll();
+//                 gsap.set(".navigation", { y: scrollY });
+//             }
+//         });
+//         ScrollTrigger.refresh();
+//     }
+// }
 
-// Call on load
-window.addEventListener("load", handleMobileStickyNav);
+// // Call on load
+// window.addEventListener("load", handleMobileStickyNav);
 
 
 
@@ -203,7 +217,6 @@ let resizeHandlerTimeout;
 window.addEventListener("resize", () => {
     clearTimeout(resizeHandlerTimeout);
     resizeHandlerTimeout = setTimeout(() => {
-        handleMobileStickyNav();     // Re-evaluate sticky nav on resize
         ScrollTrigger.refresh();     // Recalculate scroll positions
     }, 250);
 });
@@ -218,79 +231,3 @@ window.addEventListener("resize", () => {
 // ----------------------------------------
 // 10. Mobile Menu Animation with Checkbox Trigger
 // ----------------------------------------
-
-function toggleMobileMenu() {
-    const menuCheckbox = document.querySelector("#menu-trigger");
-    if (!menuCheckbox || window.innerWidth >= 768) return;
-
-    const smoother = ScrollSmoother.get();
-
-    // Create the timeline (only once)
-    const menuTimeline = gsap.timeline({ paused: true, reversed: true });
-
-    menuTimeline
-        .to(".navigation", {
-            x: "-100dvw",
-            width: "100%",
-            duration: 0.6,
-            ease: "power4.out",
-            onStart: () => {
-                // Lock scrolling (GSAP + CSS + touch)
-                if (smoother) smoother.paused(true);
-                document.body.classList.add("menu-open");
-                disableScrollTouch();
-            }
-        })
-        .from(".navigation ul li", {
-            opacity: 0,
-            y: 30,
-            stagger: 0.12,
-            duration: 0.4,
-            ease: "power2.out"
-        }, "<+=0.1");
-
-    // Remove old listener if any
-    menuCheckbox.removeEventListener("change", window._menuToggleHandler);
-
-    window._menuToggleHandler = function (e) {
-        if (e.target.checked) {
-            menuTimeline.play();
-        } else {
-            menuTimeline.reverse().eventCallback("onReverseComplete", () => {
-                // Unlock scroll
-                if (smoother) smoother.paused(false);
-                document.body.classList.remove("menu-open");
-                enableScrollTouch();
-            });
-        }
-    };
-
-    menuCheckbox.addEventListener("change", window._menuToggleHandler);
-}
-
-// Helpers to disable/enable scroll gestures
-function disableScrollTouch() {
-    document.body.style.overflow = "hidden";
-    document.body.style.height = "100vh";
-    const wrapper = document.getElementById("smooth-wrapper");
-    if (wrapper) wrapper.style.touchAction = "none";
-}
-
-function enableScrollTouch() {
-    document.body.style.overflow = "";
-    document.body.style.height = "";
-    const wrapper = document.getElementById("smooth-wrapper");
-    if (wrapper) wrapper.style.touchAction = "";
-}
-
-// Init on load
-window.addEventListener("load", toggleMobileMenu);
-
-// Reinit on resize with debounce
-let resizeTimeoutCheck;
-window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeoutCheck);
-    resizeTimeoutCheck = setTimeout(() => {
-        toggleMobileMenu();
-    }, 250);
-});
