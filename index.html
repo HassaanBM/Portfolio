@@ -10,12 +10,45 @@
   <meta name="description"
     content="Hassaan Bin Masham is a Product Designer based in Pakistan. He has been crafting products stories and experiences for over a decade.">
   <meta name="keywords"
-    content="product Desiger, UI/UX Designer, Web Designer, Graphic Designer, Pakistan, Product Designer in Pakistan, Hassaan Bin Masham">
+    content="Product Designer, UI/UX Designer, Web Designer, Graphic Designer, Pakistan, Product Designer in Pakistan, Hassaan Bin Masham">
   <meta name="author" content="Hassaan Bin Masham">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://hassaanbm.github.io/Portfolio/">
+  <link rel="apple-touch-icon" href="res/icons/icon-light.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hassaan Bin Masham">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Hassaan Bin Masham - Product Designer">
+  <meta property="og:description" content="Hassaan Bin Masham is a Product Designer based in Pakistan. He has been crafting products stories and experiences for over a decade.">
+  <meta property="og:url" content="https://hassaanbm.github.io/Portfolio/">
+  <meta property="og:image" content="https://hassaanbm.github.io/Portfolio/res/og-image.jpg">
+  <meta property="og:image:secure_url" content="https://hassaanbm.github.io/Portfolio/res/og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Hassaan Bin Masham - Product Designer">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hassaan Bin Masham - Product Designer">
+  <meta name="twitter:description" content="Hassaan Bin Masham is a Product Designer based in Pakistan. He has been crafting products stories and experiences for over a decade.">
+  <meta name="twitter:image" content="https://hassaanbm.github.io/Portfolio/res/og-image.jpg">
+  <meta name="twitter:image:alt" content="Hassaan Bin Masham - Product Designer">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Hassaan Bin Masham","jobTitle":"Product Designer","url":"https://hassaanbm.github.io/Portfolio/","image":"https://hassaanbm.github.io/Portfolio/res/og-image.jpg","sameAs":["https://www.linkedin.com/in/hassaanbinmasham/"],"address":{"@type":"PostalAddress","addressCountry":"PK"}}
+  </script>
 
   <!-- Fav icons -->
   <link href="res/icons/icon-light.png" rel="icon" media="(prefers-color-scheme: light)">
   <link href="res/icons/icon-dark.png" rel="icon" media="(prefers-color-scheme: dark)">
+
+  <!-- Lite version routing: send low-connection / no-GPU visitors to lite.html (a saved choice always wins) -->
+  <script src="res/view-select.js"></script>
 
   <!-- Styles -->
   <link rel="stylesheet" href="res/animations.css" />
@@ -35,6 +68,9 @@
     </div>
   </div>
   <!-- Preloader End -->
+
+  <!-- Cursor bubble (follows the pointer over project cards) -->
+  <div class="cursor-bubble js-cursor-bubble" aria-hidden="true"><span>View</span></div>
 
 
   <div id="smooth-wrapper">
@@ -64,9 +100,10 @@
           <nav class="navigation">
             <ul>
               <li><a class="nav-items d-none" href="./">Home</a></li>
-              <li><span>Download: </span><a href="Resume">Resume</a></li>
+              <li><span>Download: </span><a href="https://bit.ly/4ePuVva" target="_blank">Resume</a></li>
               <li><a class="nav-items" href="https://be.net/hassaan_bm" target="_blank">Behance</a></li>
-              <li><a class="nav-items" href="https://hassaanbinmasham.com" target="_blank">Bento</a></li>
+              <!-- <li><a class="nav-items" href="https://hassaanbinmasham.com" target="_blank">Bento</a></li> -->
+              <li><a class="nav-items" href="lite.html" data-view="lite" title="Faster, lighter version of this site">Lite.v1</a></li>
               <li><label class="nav-items" for="menu-trigger" target="_blank">Close</label></li>
             </ul>
           </nav>
@@ -97,67 +134,193 @@
           </section>
 
 
-          <section class="work">
-            <div class="container ">
-              <h1>My Work</h1>
-              <p>This is a selection of my work. For more, visit my <a href="https://be.net/hassaan_bm"
-                  target="_blank">Behance</a> profile.</p>
-              <ul class="projects">
-                <li class="project-1 project-list-item">
-                  <a class="project" href="https://www.be.net/gallery/145545095/HCAI-Surveillance-App" target="_blank">
-                    <div class="project-image-wrapper">
-                      <img src="res/projects/hcai.jpg" alt="HCAI" class="project-image" loading="lazy">
+          <!-- Second fold: story (rises over the hero like a curtain) -->
+          <section class="story" id="story">
+            <div class="container">
+              <div class="story-tabs" role="tablist" aria-label="Choose who you are">
+                <button class="story-tab is-active" role="tab" aria-selected="true" data-audience="everyone">For Everyone</button>
+                <button class="story-tab" role="tab" aria-selected="false" data-audience="recruiters">Recruiters</button>
+                <button class="story-tab" role="tab" aria-selected="false" data-audience="agencies">Agencies</button>
+                <button class="story-tab" role="tab" aria-selected="false" data-audience="clients">Clients</button>
+                <button class="story-tab" role="tab" aria-selected="false" data-audience="collaborators">Collaborators</button>
+              </div>
+
+              <p class="story-text js-story-text" aria-live="polite">Hi, welcome to my portfolio. I’m Hassaan, a hands-on Product Designer focused on crafting
+                stories and experiences people enjoy using. Dive in to explore my work, my process, and how I turn
+                ideas into products.</p>
+
+              <div class="story-footer">
+                <p class="story-location font-small"><span>Based in</span><strong>Karachi, Pakistan</strong></p>
+                <a class="story-cta js-story-cta" href="#work">
+                  <span>View my work</span>
+                  <span class="magnet js-magnet"><span class="story-cta-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v11M3 8.5l5 5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span></span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- Work: each project is a chapter that arrives on cue -->
+          <section class="work" id="work">
+            <div class="container">
+              <div class="work-head">
+                <p class="chapter-label font-small js-reveal">Selected work</p>
+                <h1 class="work-title js-reveal">Six stories, told one screen at a time.</h1>
+                <p class="work-intro js-reveal">A selection of my work. For more, visit my <a href="https://be.net/hassaan_bm"
+                    target="_blank">Behance</a> profile.</p>
+              </div>
+
+              <ol class="projects">
+                <li class="project-1 project-list-item chapter">
+                  <a class="project" href="https://hassaanbm.github.io/8x-life/" target="_blank" data-cursor="View">
+                    <div class="project-image-wrapper js-image-reveal">
+                      <video class="project-image js-hover-media" data-src="res/projects/life-at-8x.mp4"
+                        poster="res/projects/life-at-8x-poster.jpg" width="1100" height="862" muted loop playsinline
+                        preload="none" aria-label="Recording of the Life at 8x preloader and scroll animation"></video>
                     </div>
                     <div class="project-content">
-                      <div class="project-tag">Mobile App, UI / UX</div>
-                      <h3 class="project-title">HCAI</h3>
-                      <p class="project-description">A concept of a mobile app that helps people move their goods, this
-                        was hoped to reduce the overall hastle of finding a truck or a moving service.</p>
+                      <div class="project-number js-reveal">01<span> / 06</span></div>
+                      <div class="project-tag js-reveal">Website, UI / UX, Interaction</div>
+                      <h3 class="project-title js-reveal">Life at 8x</h3>
+                      <p class="project-description js-reveal">My redesign of the Life at 8x page. The old page listed
+                        facts; this one lets you feel them. Eight short parts in one scroll, with a living field of dots
+                        that turns big numbers into something you can see.</p>
+                      <span class="project-link story-cta is-ne js-reveal">
+                        <span>View live site</span>
+                        <span class="magnet js-magnet"><span class="story-cta-icon" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </span></span>
+                      </span>
                     </div>
                   </a>
                 </li>
-                <li class="project-2 project-list-item">
-                  <a class="project" href="https://www.be.net/gallery/213647379/Frovi-Link" target="_blank">
-                    <div class="project-image-wrapper">
-                      <img src="res/projects/frovilink.jpg" alt="naqlista" class="project-image" loading="lazy">
+                <li class="project-2 project-list-item chapter">
+                  <a class="project" href="https://www.behance.net/gallery/256359083/AI-CRM-Design" target="_blank"
+                    data-cursor="View">
+                    <div class="project-image-wrapper js-image-reveal">
+                      <img src="res/projects/ai-crm.jpg" data-hover-src="res/projects/ai-crm.gif" alt="AI CRM" class="project-image js-hover-media" width="824" height="646"
+                        loading="lazy">
                     </div>
                     <div class="project-content">
-                      <div class="project-tag">Mobile App, UI / UX</div>
-                      <h3 class="project-title">Frovi-Link</h3>
-                      <p class="project-description">A concept of a mobile app that helps people move their goods, this
-                        was hoped to reduce the overall hastle of finding a truck or a moving service.</p>
+                      <div class="project-number js-reveal">02<span> / 06</span></div>
+                      <div class="project-tag js-reveal">Web App, UI / UX, Branding</div>
+                      <h3 class="project-title js-reveal">AI CRM</h3>
+                      <p class="project-description js-reveal">A CRM concept for small and medium businesses: a landing
+                        page and a dashboard to follow financials, onboardings, tasks and team activity. Designed in
+                        Figma.</p>
+                      <span class="project-link story-cta is-ne js-reveal">
+                        <span>View case study</span>
+                        <span class="magnet js-magnet"><span class="story-cta-icon" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </span></span>
+                      </span>
                     </div>
                   </a>
                 </li>
-                <li class="project-3 project-list-item">
-                  <a class="project" href="https://www.be.net/gallery/145409993/Gift-Card" target="_blank">
-                    <div class="project-image-wrapper">
-                      <img src="res/projects/gift-card.jpg" alt="naqlista" class="project-image" loading="lazy">
+                <li class="project-3 project-list-item chapter">
+                  <a class="project" href="https://www.be.net/gallery/145545095/HCAI-Surveillance-App" target="_blank"
+                    data-cursor="View">
+                    <div class="project-image-wrapper js-image-reveal">
+                      <img src="res/projects/hcai.jpg" data-hover-src="res/projects/hcai.gif" alt="HCAI" class="project-image js-hover-media" width="606" height="475"
+                        loading="lazy">
                     </div>
                     <div class="project-content">
-                      <div class="project-tag">Mobile App, UI / UX</div>
-                      <h3 class="project-title">Gift Card</h3>
-                      <p class="project-description">Designed the user experience for GoZayaan’s gift card program,
-                        which started as a small feature but quickly grew into a full vertical. Users’ familiarity with
-                        gift cards made adoption seamless, creating a new way to engage with the platform.</p>
+                      <div class="project-number js-reveal">03<span> / 06</span></div>
+                      <div class="project-tag js-reveal">Mobile App, UI / UX</div>
+                      <h3 class="project-title js-reveal">HCAI</h3>
+                      <p class="project-description js-reveal">A concept of a mobile app that helps people move their
+                        goods, this was hoped to reduce the overall hastle of finding a truck or a moving service.</p>
+                      <span class="project-link story-cta is-ne js-reveal">
+                        <span>View case study</span>
+                        <span class="magnet js-magnet"><span class="story-cta-icon" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </span></span>
+                      </span>
                     </div>
                   </a>
                 </li>
-                <li class="project-4 project-list-item">
-                  <a class="project" href="https://www.be.net/gallery/145665303/Naqlista" target="_blank">
-                    <div class="project-image-wrapper">
-                      <img src="res/projects/naqlista.jpg" alt="naqlista" class="project-image" loading="lazy">
+                <li class="project-4 project-list-item chapter">
+                  <a class="project" href="https://www.be.net/gallery/213647379/Frovi-Link" target="_blank"
+                    data-cursor="View">
+                    <div class="project-image-wrapper js-image-reveal">
+                      <img src="res/projects/frovilink.jpg" data-hover-src="res/projects/frovilink.gif" alt="Frovi-Link" class="project-image js-hover-media" width="606"
+                        height="475" loading="lazy">
                     </div>
                     <div class="project-content">
-                      <div class="project-tag">Mobile App, UI / UX</div>
-                      <h3 class="project-title">Naqlista</h3>
-                      <p class="project-description">Designed a mobile app concept to simplify moving by making it
-                        easier to find trucks and moving services. The goal was to reduce the hassle of coordinating
-                        logistics, offering users a seamless experience.</p>
+                      <div class="project-number js-reveal">04<span> / 06</span></div>
+                      <div class="project-tag js-reveal">Mobile App, UI / UX</div>
+                      <h3 class="project-title js-reveal">Frovi-Link</h3>
+                      <p class="project-description js-reveal">A concept of a mobile app that helps people move their
+                        goods, this was hoped to reduce the overall hastle of finding a truck or a moving service.</p>
+                      <span class="project-link story-cta is-ne js-reveal">
+                        <span>View case study</span>
+                        <span class="magnet js-magnet"><span class="story-cta-icon" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </span></span>
+                      </span>
                     </div>
                   </a>
                 </li>
-              </ul>
+                <li class="project-5 project-list-item chapter">
+                  <a class="project" href="https://www.be.net/gallery/145409993/Gift-Card" target="_blank"
+                    data-cursor="View">
+                    <div class="project-image-wrapper js-image-reveal">
+                      <img src="res/projects/gift-card.jpg" data-hover-src="res/projects/gift-card.gif" alt="Gift Card" class="project-image js-hover-media" width="606"
+                        height="475" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                      <div class="project-number js-reveal">05<span> / 06</span></div>
+                      <div class="project-tag js-reveal">Mobile App, UI / UX</div>
+                      <h3 class="project-title js-reveal">Gift Card</h3>
+                      <p class="project-description js-reveal">Designed the user experience for GoZayaan’s gift card
+                        program, which started as a small feature but quickly grew into a full vertical. Users’
+                        familiarity with gift cards made adoption seamless, creating a new way to engage with the
+                        platform.</p>
+                      <span class="project-link story-cta is-ne js-reveal">
+                        <span>View case study</span>
+                        <span class="magnet js-magnet"><span class="story-cta-icon" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </span></span>
+                      </span>
+                    </div>
+                  </a>
+                </li>
+                <li class="project-6 project-list-item chapter">
+                  <a class="project" href="https://www.be.net/gallery/145665303/Naqlista" target="_blank"
+                    data-cursor="View">
+                    <div class="project-image-wrapper js-image-reveal">
+                      <img src="res/projects/naqlista.jpg" data-hover-src="res/projects/naqlista.gif" alt="Naqlista" class="project-image js-hover-media" width="606"
+                        height="475" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                      <div class="project-number js-reveal">06<span> / 06</span></div>
+                      <div class="project-tag js-reveal">Mobile App, UI / UX</div>
+                      <h3 class="project-title js-reveal">Naqlista</h3>
+                      <p class="project-description js-reveal">Designed a mobile app concept to simplify moving by
+                        making it easier to find trucks and moving services. The goal was to reduce the hassle of
+                        coordinating logistics, offering users a seamless experience.</p>
+                      <span class="project-link story-cta is-ne js-reveal">
+                        <span>View case study</span>
+                        <span class="magnet js-magnet"><span class="story-cta-icon" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </span></span>
+                      </span>
+                    </div>
+                  </a>
+                </li>
+              </ol>
+
+              <div class="work-more js-reveal">
+                <p>Want to see more?</p>
+                <a class="story-cta is-ne" href="https://be.net/hassaan_bm" target="_blank">
+                  <span>View my work on Behance</span>
+                  <span class="magnet js-magnet"><span class="story-cta-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span></span>
+                </a>
+              </div>
             </div>
           </section>
 
@@ -165,7 +328,16 @@
 
         </main>
         <footer>
-          Let's connect.
+          <div class="container footer-inner">
+            <p class="footer-title">Let's connect.</p>
+            <a class="footer-mail" href="mailto:hassaanbinmasham@gmail.com?subject=Hello Hassaan">hassaanbinmasham@gmail.com</a>
+            <ul class="footer-links">
+              <li><a href="https://be.net/hassaan_bm" target="_blank">Behance</a></li>
+              <!-- <li><a href="https://hassaanbinmasham.com" target="_blank">Bento</a></li> -->
+              <li><a href="https://bit.ly/4ePuVva" target="_blank">Resume</a></li>
+              <li><a href="lite.html" data-view="lite">Lite version</a></li>
+            </ul>
+          </div>
         </footer>
       </div>
     </div>

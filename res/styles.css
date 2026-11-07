@@ -4,6 +4,8 @@
   03. Header
   04. Home Page Content
   05. First Fold
+  06. Second Fold (Story) and Work chapters
+  07. Footer, cursor bubble
 
 
   Meta:
@@ -227,7 +229,7 @@ body {
 /* Header */
 header{
   position:         fixed;
-  z-index:          1;
+  z-index:          10;
   left:             0;
   right:            0;
   top:              0;
@@ -382,6 +384,7 @@ main.main-content {
       min-height:     100vh;
     }
     &.intro{
+      position:   relative;
       min-height: 100vh;
       overflow:   hidden;
       span{
@@ -423,101 +426,346 @@ main.main-content {
       }
     }
     
-    /* Work Section */
-    &.work{
+    /* Second fold: Story (rises over the hero like a curtain) */
+    &.story{
+      position:         relative;
+      z-index:          2;
+      min-height:       100vh;
+      padding-block:    clamp(6rem, 14vh, 9rem) clamp(4rem, 10vh, 7rem);
       background-color: var(--background-dark);
-      color: var(--text-dark);
-      ul.projects{
-        padding-block:    2rem;
-        padding-inline:   0px;
-        list-style:       none;
-        @media screen and (min-width: 768px){
-          display:          flex;
-          flex-wrap:        wrap;
-          justify-content:  space-between;
+      color:            var(--text-dark);
+      .container{
+        display:          flex;
+        flex-direction:   column;
+        gap:              clamp(2rem, 5vh, 3.5rem);
+      }
+      .story-tabs{
+        display:          flex;
+        flex-wrap:        wrap;
+        gap:              0.5rem;
+      }
+      .story-tab{
+        font:             inherit;
+        font-size:        var(--font-size-small);
+        color:            hsl(from var(--text-dark) H S L / 70%);
+        background:       transparent;
+        border:           1px solid transparent;
+        border-radius:    2rem;
+        padding:          0.55rem 1rem;
+        min-height:       44px;
+        transition:       color 0.3s, background-color 0.3s, border-color 0.3s;
+        &:hover{
+          color:          var(--text-dark);
+          border-color:   hsl(from var(--text-dark) H S L / 35%);
         }
+        &:focus-visible{
+          outline:        2px solid var(--text-dark);
+          outline-offset: 2px;
+        }
+        &.is-active{
+          background:     var(--text-dark);
+          color:          var(--text-light);
+        }
+      }
+      .story-text{
+        font-size:        clamp(1.75rem, 4.2vw, 3.6rem);
+        line-height:      1.2;
+        font-weight:      400;
+        letter-spacing:   -0.01em;
+        max-width:        22em;
+        padding:          0;
+        .word{
+          opacity:        0.22;
+        }
+      }
+      .story-footer{
+        display:          flex;
+        justify-content:  space-between;
+        align-items:      flex-end;
+        gap:              2rem;
+        flex-wrap:        wrap;
+      }
+      .story-location{
+        display:          grid;
+        gap:              0.25rem;
+        padding:          0;
+        span{ opacity: 0.6; }
+        strong{ font-weight: 500; font-size: var(--font-size-large); }
+      }
+    }
+
+    /* Shared call-to-action: label + round arrow button */
+    .story-cta{
+      display:          inline-flex;
+      align-items:      center;
+      gap:              1rem;
+      color:            var(--text-dark);
+      text-decoration:  none;
+      font-size:        var(--font-size-large);
+      .story-cta-icon{
+        display:          grid;
+        place-items:      center;
+        width:            3rem;
+        height:           3rem;
+        border:           1px solid hsl(from var(--text-dark) H S L / 60%);
+        border-radius:    50%;
+        transition:       background-color 0.3s, color 0.3s, transform 0.4s ease;
+      }
+      &:hover .story-cta-icon,
+      &:focus-visible .story-cta-icon{
+        background:       var(--text-dark);
+        color:            var(--text-light);
+        transform:        rotate(-45deg);
+      }
+      &:focus-visible{
+        outline:          2px solid var(--text-dark);
+        outline-offset:   6px;
+        border-radius:    2rem;
+      }
+      /* Arrows that point up and right keep their angle; the arrow just nudges */
+      &.is-ne:hover .story-cta-icon,
+      &.is-ne:focus-visible .story-cta-icon{
+        transform:        none;
+      }
+      &.is-ne .story-cta-icon svg{
+        transition:       transform 0.3s ease;
+      }
+      &.is-ne:hover .story-cta-icon svg,
+      &.is-ne:focus-visible .story-cta-icon svg{
+        transform:        translate(2px, -2px);
+      }
+    }
+    /* The whole project card is the link, so the card hover lights the button */
+    .project:hover .story-cta-icon,
+    .project:focus-visible .story-cta-icon{
+      background:       var(--text-dark);
+      color:            var(--text-light);
+    }
+    /* Magnetic wrapper: JS moves this, the icon inside keeps its own hover motion */
+    .magnet{
+      display:          inline-grid;
+      will-change:      transform;
+    }
+
+    /* Work Section: every project is a chapter */
+    &.work{
+      display:          block;
+      background-color: var(--background-dark);
+      color:            var(--text-dark);
+      padding-top:      clamp(2rem, 6vh, 4rem);
+      padding-bottom:   clamp(5rem, 12vh, 9rem);
+      .work-head{
+        max-width:        44rem;
+        margin-bottom:    clamp(3rem, 8vh, 6rem);
+        .chapter-label{
+          opacity:          0.6;
+          letter-spacing:   0.12em;
+          text-transform:   uppercase;
+        }
+        .work-title{
+          font-size:        clamp(2rem, 5vw, 4.2rem);
+          line-height:      1.05;
+          font-weight:      500;
+          letter-spacing:   -0.02em;
+          margin-block:     0.75rem 1rem;
+        }
+        .work-intro{
+          opacity:          0.7;
+          padding:          0;
+        }
+      }
+      ol.projects{
+        padding:          0;
+        margin:           0;
+        list-style:       none;
+        display:          grid;
+        gap:              clamp(4.5rem, 12vw, 9rem);
         li{
-          margin-bottom:  2rem;
-          @media screen and (min-width: 768px){
-            width:          48%;
-          }
-          .project { 
-            display:          block;
-            padding:          1rem;
-            border:           1px solid var(--background-grid-color);
-            text-decoration:  none;
-            position:         relative;
-            border-radius:    0.5rem;
-            transition:       all 0.3s ease;
-            background:       hsl(from var(--card-bg-dark) h s l / 100%);
-            &:hover{
-              background:       hsl(from var(--card-bg-dark) h s 05% / 25%);
+          margin:         0;
+          .project{
+            display:              grid;
+            grid-template-columns: 1.15fr 1fr;
+            align-items:          center;
+            gap:                  clamp(1.5rem, 5vw, 4rem);
+            color:                inherit;
+            text-decoration:      none;
+            @media screen and (max-width: 768px) {
+              grid-template-columns: 1fr;
             }
-            @media screen and (min-width: 768px) {
-              display:          flex;
-              flex-flow:        column nowrap;
-              justify-content:  space-between;
-              gap:              1rem;
+            &:focus-visible{
+              outline:            2px solid var(--text-dark);
+              outline-offset:     8px;
+              border-radius:      0.75rem;
             }
             .project-image-wrapper{
-              border-radius:  0.5rem;
-              overflow:       hidden;
-              img {
-                object-fit:     cover;
-                flex:           1;
-                aspect-ratio:   16 / 9;
-                display:        block;
-                width:          1080px;
-                max-width:      100%;
-                transform:      scale(1);
-                transition:     all 0.7s ease;
-              }
-            }
-            .project-tag{
-              top:            1rem;
-              right:          1rem;
-              @media (prefers-color-scheme: dark) {background:    hsl(from var(--card-bg-dark)  h s 25% / 25%);}
-              @media (prefers-color-scheme: light){background:    hsl(from var(--card-bg-light) h s 50% / 25%);}
-              padding:        0.8rem 1rem;
-              border-radius:  0.5rem;
-              order:          3;
-              /* display:        flex; */
-              display:        none;
-              @media screen and (max-width: 768px){
-                top:          0 !important;
-                right:        0 !important;
-                position:     relative !important;
-                margin-top:   0.5rem;
+              border-radius:      0.75rem;
+              overflow:           hidden;
+              background:         var(--card-bg-dark);
+              img, video{
+                display:          block;
+                width:            100%;
+                height:           auto;
+                aspect-ratio:     606 / 475;
+                object-fit:       cover;
+                scale:            1.16;
+                transition:       scale 0.7s ease;
               }
             }
             .project-content{
-              @media screen and (max-width: 768px) {
-                  position: relative;
-                  display: grid;
-              }
+              display:            grid;
+              justify-items:      start;
+              gap:                0.5rem;
+            }
+            .project-number{
+              font-size:          var(--font-size-small);
+              letter-spacing:     0.12em;
+              font-variant-numeric: tabular-nums;
+              span{ opacity: 0.45; }
+            }
+            .project-tag{
+              display:            inline-block;
+              font-size:          var(--font-size-small);
+              padding:            0.35rem 0.8rem;
+              border:             1px solid hsl(from var(--text-dark) H S L / 35%);
+              border-radius:      2rem;
+              margin-block:       0.25rem 0.5rem;
+            }
+            .project-title{
+              font-size:          clamp(2.2rem, 5vw, 4rem);
+              font-weight:        500;
+              line-height:        1.05;
+              letter-spacing:     -0.02em;
+              margin-block:       0;
+            }
+            .project-description{
+              opacity:            0.7;
+              max-width:          30em;
+              padding-block:      0.5rem 1rem;
+            }
+            .project-link{
+              margin-top:         0.5rem;
             }
           }
-          &:hover{
-            .project-image-wrapper{
-              img{
-                transform: scale(1.05);
-              }
+          &:nth-child(even) .project-image-wrapper{
+            @media screen and (min-width: 769px) {
+              order:          2;
             }
           }
+          &:hover .project-image-wrapper :is(img, video){
+            scale:            1.22;
+          }
+          // Media that plays on hover shows the whole frame, with only a small zoom.
+          .project-image-wrapper .js-hover-media{
+            scale:            1;
+            object-fit:       contain;
+          }
+          &:hover .project-image-wrapper .js-hover-media{
+            scale:            1.03;
+          }
+        }
+      }
+      .work-more{
+        display:            grid;
+        justify-items:      center;
+        gap:                1.5rem;
+        text-align:         center;
+        margin-top:         clamp(5rem, 12vh, 8rem);
+        p{
+          font-size:        var(--font-size-h2);
+          padding:          0;
         }
       }
     }
   }
 }
 footer{
-  padding:      2rem 1rem;
+  background:   var(--card-bg-dark);
+  color:        var(--text-dark);
+  border-top:   1px solid var(--background-grid-color);
   text-align:   center;
   display:      block;
-  background:   var(--card-bg-dark);
-  color: var(--text-dark);
-  @media screen and (max-width: 768px){
-    padding:    2.5rem 1rem;
+  padding:      clamp(4rem, 12vh, 7rem) 1rem 2rem;
+  .footer-inner{
+    display:          grid;
+    justify-items:    center;
+    gap:              1.25rem;
   }
+  .footer-title{
+    font-size:        clamp(3rem, 11vw, 9rem);
+    font-weight:      500;
+    line-height:      0.95;
+    letter-spacing:   -0.03em;
+    padding:          0;
+  }
+  .footer-mail{
+    font-size:        var(--font-size-h3);
+    text-decoration:  underline;
+    text-underline-offset: 0.3em;
+    text-decoration-color: hsl(from var(--text-dark) H S L / 40%);
+    transition:       text-decoration-color 0.3s;
+    &:hover{ text-decoration-color: var(--text-dark); }
+  }
+  .footer-links{
+    display:          flex;
+    flex-wrap:        wrap;
+    justify-content:  center;
+    gap:              0.5rem 1.75rem;
+    list-style:       none;
+    margin:           clamp(2rem, 6vh, 4rem) 0 0;
+    padding:          0;
+    a{
+      font-size:      var(--font-size-small);
+      text-decoration: none;
+      opacity:        0.65;
+      transition:     opacity 0.3s;
+      &:hover{ opacity: 1; }
+    }
+  }
+}
+
+/* Blinds: horizontal slats that close over the hero while you scroll past it */
+.blinds{
+  position:         absolute;
+  inset:            0;
+  z-index:          3;
+  display:          flex;
+  flex-direction:   column;
+  pointer-events:   none;
+  > span{
+    flex:             1 1 0;
+    background:       var(--background-dark);
+    box-shadow:       0 1px 0 0 var(--background-dark);
+    transform:        scaleY(0);
+    transform-origin: 50% 0%;
+  }
+}
+
+/* Cursor bubble shown over project cards (fine pointers only) */
+.cursor-bubble{
+  position:         fixed;
+  left:             0;
+  top:              0;
+  z-index:          300;
+  width:            5.5rem;
+  height:           5.5rem;
+  display:          grid;
+  place-items:      center;
+  border-radius:    50%;
+  background:       var(--text-dark);
+  color:            var(--text-light);
+  font-size:        0.9rem;
+  pointer-events:   none;
+  opacity:          0;
+  will-change:      transform;
+}
+@media (hover: none), (pointer: coarse) {
+  .cursor-bubble{ display: none; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .blinds{ display: none; }
+  .story-text .word{ opacity: 1 !important; }
 }
 .container{
   width:                100%;

@@ -1,0 +1,137 @@
+/* Lite version
+   Quick overview for low connections, no-GPU machines, or anyone in a hurry.
+   Layout follows joseph.cv: a thin info bar, a short about, then the work.
+   Black and white only, same font as the full site. */
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300..700&display=swap');
+
+:root {
+  --bg: hsl(0, 0%, 10%);
+  --card: hsl(0, 0%, 12%);
+  --line: hsl(0, 0%, 100%, 0.12);
+  --text: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 100%, 0.62);
+  --font: 'Work Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --pad: clamp(1rem, 3vw, 2rem);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: auto; }
+
+body.lite {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Smooth scroll wrapper is only fixed when the smoother script is running */
+.has-smoother #smooth-wrapper {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+.has-smoother #smooth-content {
+  width: 100%;
+  will-change: transform;
+}
+
+a { color: inherit; text-decoration-color: hsl(0, 0%, 100%, 0.4); text-underline-offset: 0.2em; }
+a:hover { text-decoration-color: var(--text); }
+a:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+
+h2, p, ul, ol { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+
+/* Info bar */
+.lite-bar {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--pad);
+  padding: var(--pad);
+  border-bottom: 1px solid var(--line);
+  font-weight: 500;
+}
+.lite-bar .lite-name { text-decoration: none; }
+.lite-bar .lite-role, .lite-bar .lite-place { font-weight: 400; }
+
+/* About, links, view */
+.lite-intro {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--pad);
+  padding: var(--pad);
+}
+.lite-about p { max-width: 34em; }
+.lite-label {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.lite-col li + li { margin-top: 0.15rem; }
+
+/* Work grid */
+.lite-work { padding: 0 var(--pad) var(--pad); }
+.lite-work-label { margin-block: 1rem 1rem; }
+.lite-projects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--pad);
+  align-items: start;
+}
+.lite-projects a {
+  display: block;
+  text-decoration: none;
+}
+.lite-projects img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 606 / 475;
+  object-fit: cover;
+  background: var(--card);
+  margin-bottom: 0.6rem;
+}
+.lite-title { display: block; font-weight: 500; }
+.lite-tag {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lite-desc {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--muted);
+  max-width: 38em;
+}
+.lite-projects a:hover .lite-title { text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* Footer */
+.lite-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding: var(--pad);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+@media screen and (max-width: 720px) {
+  .lite-bar, .lite-intro { grid-template-columns: 1fr 1fr; }
+  .lite-bar .lite-name, .lite-about { grid-column: 1 / -1; }
+  .lite-projects { grid-template-columns: 1fr; }
+}
